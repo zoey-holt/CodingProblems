@@ -188,7 +188,7 @@ namespace CodingProblems
 
         // 5. Longest Palindromic Substring
         // Given a string s, return the longest palindromic substring in s.
-        // TODO: optimize for speed.
+        // TODO: optimize speed.
         public string LongestPalindrome(string s)
         {
             var longest = s.Substring(0, 1);
@@ -274,6 +274,34 @@ namespace CodingProblems
             }
 
             return result;
+        }
+
+        // 7. Reverse Integer
+        // Given a signed 32-bit integer x, return x with its digits reversed. If reversing x causes the value to go outside the signed 32-bit integer range [-231, 231 - 1], then return 0.
+        // Assume the environment does not allow you to store 64-bit integers (signed or unsigned).
+        public int ReverseInt(int x)
+        {
+            var negative = x < 0;
+            if (negative)
+                x *= -1;
+
+            var result = 0;
+            try
+            {
+                while (x > 0)
+                {
+                    result += x % 10;
+                    x /= 10;
+                    if (x > 0)
+                        result = checked(result * 10);
+                }
+            }
+            catch (System.OverflowException)
+            {
+                return 0;
+            }
+
+            return negative ? result * -1 : result;
         }
     }
 }

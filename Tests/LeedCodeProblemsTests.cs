@@ -86,5 +86,20 @@ namespace Tests
             var actual = new LeetCodeProblems().ZigZagConvert(s, numRows);
             Assert.AreEqual(expected, actual);
         }
+
+        [TestCase(123, 321)]
+        [TestCase(-123, -321)]
+        [TestCase(120, 21)]
+        [TestCase(0, 0)]
+        [TestCase(123456789, 987654321)]
+        [TestCase(1525, 5251)]
+        [TestCase(112, 211)]
+        [TestCase(796, 697)]
+        [TestCase(1534236469, 0)]
+        public void TestReverseInt(int x, int expected)
+        {
+            var actual = new LeetCodeProblems().ReverseInt(x);
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
