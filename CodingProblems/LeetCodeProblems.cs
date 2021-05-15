@@ -188,6 +188,7 @@ namespace CodingProblems
 
         // 5. Longest Palindromic Substring
         // Given a string s, return the longest palindromic substring in s.
+        // TODO: optimize for speed.
         public string LongestPalindrome(string s)
         {
             var longest = s.Substring(0, 1);
@@ -215,6 +216,64 @@ namespace CodingProblems
                 }
             }
             return true;
+        }
+
+        // 6. ZigZag Conversion
+        // The string "PAYPALISHIRING" is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)
+        // P   A   H   N
+        // A P L S I I G
+        // Y   I   R
+        // And then read line by line: "PAHNAPLSIIGYIR"
+        // Write the code that will take a string and make this conversion given a number of rows
+        // TODO: optimize memory and speed.
+        public string ZigZagConvert(string s, int numRows)
+        {
+            if (numRows == 1 || numRows >= s.Length)
+                return s;
+
+            var array = new string[numRows, s.Length / 2 + 1];
+            var x = 0;
+            var y = 0;
+            bool down = true;
+            for (int i = 0; i < s.Length; i++)
+            {
+                array[x, y] = s[i].ToString();
+                if (down)
+                {
+                    x++;
+                }
+                else
+                {
+                    x--;
+                    y++;
+                }
+
+                if (x >= numRows)
+                {
+                    down = false;
+                    y++;
+                    x-=2;
+                }
+
+                if (x < 1)
+                {
+                    down = true;
+                }
+            }
+
+            var result = "";
+            for (int i = 0; i < numRows; i++)
+            {
+                for (int j = 0; j < s.Length / 2 + 1; j++)
+                {
+                    if (array[i, j] != null)
+                    {
+                        result += array[i, j];
+                    }
+                }
+            }
+
+            return result;
         }
     }
 }

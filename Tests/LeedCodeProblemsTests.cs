@@ -67,5 +67,24 @@ namespace Tests
             var actual = new LeetCodeProblems().LongestPalindrome(s);
             Assert.AreEqual(expected, actual);
         }
+
+        [TestCase("0123456789", 1, "0123456789")]
+        [TestCase("0123456789", 2, "0246813579")]
+        [TestCase("0123456789", 3, "0481357926")]
+        [TestCase("0123456789", 4, "0615724839")]
+        [TestCase("0123456789", 5, "0817926354")]
+        [TestCase("0123456789", 6, "0192837465")]
+        [TestCase("0123456789", 7, "0123948576")]
+        [TestCase("0123456789", 8, "0123459687")]
+        [TestCase("0123456789", 9, "0123456798")]
+        [TestCase("0123456789", 10, "0123456789")]
+        [TestCase("PAYPALISHIRING", 3, "PAHNAPLSIIGYIR")]
+        [TestCase("PAYPALISHIRING", 4, "PINALSIGYAHRPI")]
+        [TestCase("A", 1, "A")]
+        public void TestZigZagConvert(string s, int numRows, string expected)
+        {
+            var actual = new LeetCodeProblems().ZigZagConvert(s, numRows);
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
