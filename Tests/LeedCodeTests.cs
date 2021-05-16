@@ -4,7 +4,7 @@ using NUnit.Framework;
 namespace Tests
 {
     [TestFixture]
-    public class LeedCodeProblemsTests
+    public class LeedCodeTests
     {
         [TestCase(new int[] { 2, 7, 11, 15 }, 9, new int[] { 0, 1 })]
         [TestCase(new int[] { 3, 2, 4 }, 6, new int[] { 1, 2 })]
@@ -99,6 +99,19 @@ namespace Tests
         public void TestReverseInt(int x, int expected)
         {
             var actual = new LeetCodeProblems().ReverseInt(x);
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase("42", 42)]
+        [TestCase("   -42", -42)]
+        [TestCase("4193 with words", 4193)]
+        [TestCase("words and 987", 0)]
+        [TestCase("-91283472332", -2147483648)]
+        [TestCase("21474836460", 2147483647)]
+        [TestCase("2147483648", 2147483647)]
+        public void TestMyAtoi(string s, int expected)
+        {
+            var actual = new LeetCodeProblems().MyAtoi(s);
             Assert.AreEqual(expected, actual);
         }
     }
