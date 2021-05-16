@@ -114,5 +114,17 @@ namespace Tests
             var actual = new LeetCodeProblems().MyAtoi(s);
             Assert.AreEqual(expected, actual);
         }
+
+        [TestCase(121, true)]
+        [TestCase(-121, false)]
+        [TestCase(10, false)]
+        [TestCase(-101, false)]
+        [TestCase(1000001, true)]
+        [TestCase(1234321, true)]
+        public void TestIsPalindrome(int x, bool expected)
+        {
+            var actual = new LeetCodeProblems().IsPalindrome(x);
+            Assert.AreEqual(expected, actual);
+        }
     }
 }

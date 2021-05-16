@@ -313,7 +313,7 @@ namespace CodingProblems
         //   4. Convert these digits into an integer (i.e. "123" -> 123, "0032" -> 32). If no digits were read, then the integer is 0. Change the sign as necessary (from step 2).
         //   5. If the integer is out of the 32-bit signed integer range [-231, 231 - 1], then clamp the integer so that it remains in the range. Specifically, integers less than -231 should be clamped to -231, and integers greater than 231 - 1 should be clamped to 231 - 1.
         //   6. Return the integer as the final result.
-        // TODO: optimize for speed.
+        // TODO: optimize speed.
         public int MyAtoi(string s)
         {
             s = s.TrimStart();
@@ -368,6 +368,29 @@ namespace CodingProblems
                 }
             }
             return (int)result * sign;
+        }
+
+        // 9. Palindrome Number
+        // Given an integer x, return true if x is palindrome integer.
+        // An integer is a palindrome when it reads the same backward as forward. For example, 121 is palindrome while 123 is not.
+        public bool IsPalindrome(int x)
+        {
+            if (x < 0)
+                return false;
+            int digitCount = (int)(Math.Log10(x) + 1);
+            for (int i = 1; i <= digitCount / 2; i++)
+            {
+                int tenToTheDigitCount = (int)Math.Pow(10, digitCount - (2 * i - 1));
+                int left = x / tenToTheDigitCount;
+                int right = x - x / 10 * 10;
+                if (left != right)
+                {
+                    return false;
+                }
+                x -= left * tenToTheDigitCount;
+                x /= 10;
+            }
+            return true;
         }
     }
 }
