@@ -85,7 +85,7 @@ namespace CodingProblems
         }
 
         public ListNode AddTwoNumbers(ListNode l1, ListNode l2)
-        {            
+        {
             return AddTwoNumbers(l1, l2, false);
         }
 
@@ -252,7 +252,7 @@ namespace CodingProblems
                 {
                     down = false;
                     y++;
-                    x-=2;
+                    x -= 2;
                 }
 
                 if (x < 1)
@@ -390,6 +390,75 @@ namespace CodingProblems
                 x -= left * tenToTheDigitCount;
                 x /= 10;
             }
+            return true;
+        }
+
+        // 10. Regular Expression Matching
+        // Given an input string (s) and a pattern (p), implement regular expression matching with support for '.' and '*' where: 
+        //   '.' Matches any single character.​​​​
+        //   '*' Matches zero or more of the preceding element.
+        // The matching should cover the entire input string (not partial).
+        // TODO: redesign using recursion for validating repeating portions. This is currently a wrong answer.
+        public bool IsMatch(string s, string p)
+        {
+            if (s.Length == 0 && p.Length == 0)
+                return true;
+            if (p.Length == 0 || s.Length == 0)
+                return false;
+
+            char repeatChar = ' ';
+            bool repeat = false;
+            int si = 0;
+            int pi = 0;
+            while (true)
+            {
+                if (pi >= p.Length && si < s.Length)
+                    return false;
+
+                if (si >= s.Length)
+                {
+                    if (repeat && pi < p.Length - 2)
+                    {
+                        si--;
+                        repeat = false;
+                        pi += 2;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+
+                if (!repeat && pi + 1 < p.Length && p[pi + 1] == '*')
+                {
+                    repeatChar = p[pi];
+                    repeat = true; 
+                }
+
+                if (repeat)
+                {
+                    if (s[si] == repeatChar || repeatChar == '.')
+                    {
+                        si++;
+                    }
+                    else
+                    {
+                        repeat = false;
+                        pi += 2;
+                    }
+                    continue;
+                }
+
+                if (p[pi] == '.' || s[si] == p[pi])
+                {
+                    si++;
+                    pi++;
+                    continue;
+                }
+
+                return false;
+            }
+
             return true;
         }
     }

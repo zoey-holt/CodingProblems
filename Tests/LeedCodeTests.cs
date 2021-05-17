@@ -6,13 +6,15 @@ namespace Tests
     [TestFixture]
     public class LeedCodeTests
     {
+        private LeetCodeProblems _problems = new LeetCodeProblems();
+
         [TestCase(new int[] { 2, 7, 11, 15 }, 9, new int[] { 0, 1 })]
         [TestCase(new int[] { 3, 2, 4 }, 6, new int[] { 1, 2 })]
         [TestCase(new int[] { 3, 3 }, 6, new int[] { 0, 1 })]
         [TestCase(new int[] { 0, 1, 2, 3, 4, 5 }, 4, new int[] { 0, 4, 1, 3 })]
         public void TestTwoSum(int[] nums, int target, int[] expected)
         {
-            var actual = new LeetCodeProblems().TwoSum(nums, target);
+            var actual = _problems.TwoSum(nums, target);
             CollectionAssert.AreEquivalent(expected, actual);
         }
 
@@ -23,7 +25,7 @@ namespace Tests
         [TestCase(new int[] { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 }, new int[] { 5, 6, 4 }, new int[] { 6, 6, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 })]
         public void TestAddTwoNumbers(int[] l1, int[] l2, int[] expected)
         {
-            var actual = new LeetCodeProblems().AddTwoNumbers(new LeetCodeProblems.ListNode(l1), new LeetCodeProblems.ListNode(l2)).ToArray();
+            var actual = _problems.AddTwoNumbers(new LeetCodeProblems.ListNode(l1), new LeetCodeProblems.ListNode(l2)).ToArray();
             CollectionAssert.AreEqual(expected, actual);
         }
 
@@ -36,7 +38,7 @@ namespace Tests
         [TestCase("dvdf", 3)]
         public void TestLengthOfLongestSubstring(string s, int expected)
         {
-            var actual = new LeetCodeProblems().LengthOfLongestSubstring(s);
+            var actual = _problems.LengthOfLongestSubstring(s);
             Assert.AreEqual(expected, actual);
         }
 
@@ -51,7 +53,7 @@ namespace Tests
         [TestCase(new int[] { 1, 8 }, new int[] { 2, 3, 4, 5, 6, 7, 8, 9 }, 5.5d)]
         public void TestFindMedianSortedArrays(int[] nums1, int[] nums2, double expected)
         {
-            var actual = new LeetCodeProblems().FindMedianSortedArrays(nums1, nums2);
+            var actual = _problems.FindMedianSortedArrays(nums1, nums2);
             Assert.AreEqual(expected, actual);
         }
 
@@ -64,7 +66,7 @@ namespace Tests
         [TestCase("xdxtfdaarvvznrptwicdldmrmwbdrmyppvamdvofujthfcmkcugvodmlvubgvodectwzparprifwgwfvddlrfdnrpspirtyvxqvbqiglugbmzoyzcfkvbjdrdqqxxzutebgoacczuhopvzjfrnfsylgfgkbmbjqqyggtdjcvjbvpspkjcezanajjzabfidndfdpkuamwvxrbpxzoivlnkwdxedtfnmvicmzebwktpktokibeycbpqzejddwnvimmbzupyxwmrgdbmcujadfexcchdkfvkxsdwkuwuxzhpnjgmqbmidcwywjgcsbydixyxcclcbrzjvrmlrzgmbviifllouykovscaufvxovwmmgubshtoizbwtcpqzwchtkmkjfneuybfglywfrorhmfdgvjdsmegtoytsivnuaceszpfsxgddbweckgziahkslykgdkztmpapnoyawqtyrdcuzaxcohohapektyfbfhrsdnjbgjvwvqpcikdnlkdogsinkfpymkkdburnbksnqfjgjlacqpfqlhsjhhoccdkrjipqwzsxmpjughaqchzlrqkogkryqkuuxhzchovebzgeekuflcgvxugnxcvugqlstmnljlvxonkybmzjmnsvvwfztcplgikptnppbzeygbmdsyimsntveojwsejmastiovbctdkdlfvpyzihhxishtveflnmamlnzqroxknrrkkfpveyzvvasdznykygrpbfkbinrrvheekeumlvlgalqelspvpiydqkwduckimyhpzsxlcpkbvgwmwnasdxuupdhcmxjoushcvcnjyrmuemuydyywpvzhkxsqszaqhnbhjwsokkpployomoawtr", "fwgwf")]
         public void TestLongestPalindrome(string s, string expected)
         {
-            var actual = new LeetCodeProblems().LongestPalindrome(s);
+            var actual = _problems.LongestPalindrome(s);
             Assert.AreEqual(expected, actual);
         }
 
@@ -83,7 +85,7 @@ namespace Tests
         [TestCase("A", 1, "A")]
         public void TestZigZagConvert(string s, int numRows, string expected)
         {
-            var actual = new LeetCodeProblems().ZigZagConvert(s, numRows);
+            var actual = _problems.ZigZagConvert(s, numRows);
             Assert.AreEqual(expected, actual);
         }
 
@@ -98,7 +100,7 @@ namespace Tests
         [TestCase(1534236469, 0)]
         public void TestReverseInt(int x, int expected)
         {
-            var actual = new LeetCodeProblems().ReverseInt(x);
+            var actual = _problems.ReverseInt(x);
             Assert.AreEqual(expected, actual);
         }
 
@@ -111,7 +113,7 @@ namespace Tests
         [TestCase("2147483648", 2147483647)]
         public void TestMyAtoi(string s, int expected)
         {
-            var actual = new LeetCodeProblems().MyAtoi(s);
+            var actual = _problems.MyAtoi(s);
             Assert.AreEqual(expected, actual);
         }
 
@@ -123,8 +125,33 @@ namespace Tests
         [TestCase(1234321, true)]
         public void TestIsPalindrome(int x, bool expected)
         {
-            var actual = new LeetCodeProblems().IsPalindrome(x);
+            var actual = _problems.IsPalindrome(x);
             Assert.AreEqual(expected, actual);
         }
+
+        // Problem unsolved. Tests removed temporarily.
+        //[TestCase("", "", true)]
+        //[TestCase("1", "", false)]
+        //[TestCase("", "1", false)]
+        //[TestCase("aa", "a", false)]
+        //[TestCase("aa", "a*", true)]
+        //[TestCase("ab", ".*", true)]
+        //[TestCase("aab", "c*a*b*", true)]
+        //[TestCase("mississippi", "mis*is*p*.", false)]
+        //[TestCase("mississippi", "mis*is*ip*.", true)]
+        //[TestCase("ab", ".*c", false)]
+        //[TestCase("aaa", "aaaa", false)]
+        //[TestCase("aaa", "a*a", true)]
+        //[TestCase("aaa", "a*aa", true)]
+        //[TestCase("aaa", "a*a*a*", true)]
+        //[TestCase("aaa", "a*aa*a*aa", true)]
+        //[TestCase("aaa", "a*a*a*a*aaa", true)]
+        //[TestCase("a", "a*a*a*a*a*a*a*a*", true)]
+        //[TestCase("a", "a*a*a*a*a*a*a*a*a", true)]
+        //public void TestIsMatch(string s, string p, bool expected)
+        //{
+        //    var actual = _problems.IsMatch(s, p);
+        //    Assert.AreEqual(expected, actual);
+        //}
     }
 }
