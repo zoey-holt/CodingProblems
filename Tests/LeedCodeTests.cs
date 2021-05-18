@@ -153,5 +153,48 @@ namespace Tests
         //    var actual = _problems.IsMatch(s, p);
         //    Assert.AreEqual(expected, actual);
         //}
+
+        [TestCase(new int[] { 1, 8, 6, 2, 5, 4, 8, 3, 7 }, 49)]
+        [TestCase(new int[] { 1, 1 }, 1)]
+        [TestCase(new int[] { 4, 3, 2, 1, 4 }, 16)]
+        [TestCase(new int[] { 1, 2, 1 }, 2)]
+        [TestCase(new int[] { 0, 0 }, 0)]
+        [TestCase(new int[] { 0, 10000 }, 0)]
+        [TestCase(new int[] { 0, 10000, 0 }, 0)]
+        [TestCase(new int[] { 10000, 10000 }, 10000)]
+        [TestCase(new int[] { 10000, 10000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, 10000)]
+        [TestCase(new int[] { 76, 155, 15, 188, 180, 154, 84, 34, 187, 142, 22, 5, 27, 183, 111, 128, 50, 58, 2, 112, 179, 2, 100, 111, 115, 76, 134, 120, 118, 103, 31, 146, 58, 198, 134, 38, 104, 170, 25, 92, 112, 199, 49, 140, 135, 160, 20, 185, 171, 23, 98, 150, 177, 198, 61, 92, 26, 147, 164, 144, 51, 196, 42, 109, 194, 177, 100, 99, 99, 125, 143, 12, 76, 192, 152, 11, 152, 124, 197, 123, 147, 95, 73, 124, 45, 86, 168, 24, 34, 133, 120, 85, 81, 163, 146, 75, 92, 198, 126, 191 }, 18048)]
+        public void TestMaxArea(int[] height, int expected)
+        {
+            var actual = _problems.MaxArea(height);
+            Assert.AreEqual(expected, actual);
+        }
+        
+        [Test]
+        public void TestMaxArea()
+        {
+            var maxLength = 100000;
+            var maxHeight = 10000;
+            var height = new int[maxLength];
+            var testIndex = 49000;
+            for (int i = 0; i < height.Length; i++)
+            {
+                if (i == testIndex)
+                {
+                    height[i] = maxHeight;
+                }
+                else if (i == height.Length - testIndex)
+                {
+                    height[i] = maxHeight;
+                }
+                else
+                {
+                    height[i] = maxHeight / 100;
+                }
+            }
+            var expected = (maxLength - (testIndex * 2)) * maxHeight;
+            var actual = _problems.MaxArea(height);
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
