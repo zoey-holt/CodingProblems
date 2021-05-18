@@ -244,5 +244,17 @@ namespace Tests
             var actual = _problems.RomanToInt(s);
             Assert.AreEqual(expected, actual);
         }
+
+        [TestCase(new string[] { "flower", "flow", "flight" }, "fl")]
+        [TestCase(new string[] { "dog", "racecar", "car" }, "")]
+        [TestCase(new string[] { "aaa" }, "aaa")]
+        [TestCase(new string[] { "aaa", "aa", "a" }, "a")]
+        [TestCase(new string[] { "asdf", "asdf", "asdf", "asd", "z" }, "")]
+        [TestCase(new string[] { "aaa", "aa", "aaa" }, "aa")]
+        public void TestLongestCommonPrefix(string[] strs, string expected)
+        {
+            var actual = _problems.LongestCommonPrefix(strs);
+            Assert.AreEqual(expected, actual);
+        }
     }
 }

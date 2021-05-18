@@ -565,5 +565,34 @@ namespace CodingProblems
             }
             return num;
         }
+
+        // 14. Longest Common Prefix
+        // Write a function to find the longest common prefix string amongst an array of strings.
+        // If there is no common prefix, return an empty string "".
+        public string LongestCommonPrefix(string[] strs)
+        {
+            if (strs.Length == 1)
+                return strs[0];
+
+            var prefix = strs[0];
+            var found = false;
+            for (int i = 1; i < strs.Length; i++)
+            {
+                for (int j = Math.Min(prefix.Length, strs[i].Length); j > 0; j--)
+                {
+                    if (prefix.Substring(0, j) == strs[i].Substring(0, j))
+                    {
+                        prefix = prefix.Substring(0, j);
+                        found = true;
+                        break;
+                    }
+                }
+
+                if (!found)
+                    return "";
+                found = false;
+            }
+            return prefix;
+        }
     }
 }
