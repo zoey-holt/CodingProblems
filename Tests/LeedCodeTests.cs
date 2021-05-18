@@ -196,5 +196,29 @@ namespace Tests
             var actual = _problems.MaxArea(height);
             Assert.AreEqual(expected, actual);
         }
+
+        [TestCase(1, "I")]
+        [TestCase(3, "III")]
+        [TestCase(4, "IV")]
+        [TestCase(5, "V")]
+        [TestCase(9, "IX")]
+        [TestCase(10, "X")]
+        [TestCase(40, "XL")]
+        [TestCase(50, "L")]
+        [TestCase(58, "LVIII")]
+        [TestCase(90, "XC")]
+        [TestCase(100, "C")]
+        [TestCase(500, "D")]
+        [TestCase(1000, "M")]
+        [TestCase(1994, "MCMXCIV")]
+        [TestCase(3499, "MMMCDXCIX")]
+        [TestCase(3949, "MMMCMXLIX")]
+        [TestCase(3994, "MMMCMXCIV")]
+        [TestCase(3999, "MMMCMXCIX")]
+        public void TestIntToRoman(int num, string expected)
+        {
+            var actual = _problems.IntToRoman(num);
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
