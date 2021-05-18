@@ -220,5 +220,29 @@ namespace Tests
             var actual = _problems.IntToRoman(num);
             Assert.AreEqual(expected, actual);
         }
+
+        [TestCase("I", 1)]
+        [TestCase("III", 3)]
+        [TestCase("IV", 4)]
+        [TestCase("V", 5)]
+        [TestCase("IX", 9)]
+        [TestCase("X", 10)]
+        [TestCase("XL", 40)]
+        [TestCase("L", 50)]
+        [TestCase("LVIII", 58)]
+        [TestCase("XC", 90)]
+        [TestCase("C", 100)]
+        [TestCase("D", 500)]
+        [TestCase("M", 1000)]
+        [TestCase("MCMXCIV", 1994)]
+        [TestCase("MMMCDXCIX", 3499)]
+        [TestCase("MMMCMXLIX", 3949)]
+        [TestCase("MMMCMXCIV", 3994)]
+        [TestCase("MMMCMXCIX", 3999)]
+        public void TestRomanToInt(string s, int expected)
+        {
+            var actual = _problems.RomanToInt(s);
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
