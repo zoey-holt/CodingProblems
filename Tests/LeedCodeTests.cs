@@ -1,5 +1,7 @@
 ﻿using CodingProblems;
 using NUnit.Framework;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Tests
 {
@@ -255,6 +257,91 @@ namespace Tests
         {
             var actual = _problems.LongestCommonPrefix(strs);
             Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(new int[] { -1, 0, 1, 2, -1, -4 }, "[[-1,-1,2],[-1,0,1]]")]
+        [TestCase(new int[] { }, "[]")]
+        [TestCase(new int[] { 0 }, "[]")]
+        [TestCase(new int[] { 0, 0, 0 }, "[[0,0,0]]")]
+        [TestCase(new int[] { 0, 0, 0, 10, -5, -4, -3, -2, -1 }, "[[0,0,0]]")]
+        [TestCase(new int[] { 0, 0, 0, 10, -6, -5, -4, -3, -2, -1 }, "[[0,0,0],[-6,-4,10]]")]
+        [TestCase(new int[] { 100000, -100000, 100000 }, "[]")]
+        [TestCase(new int[] { 100000, -100000, 0 }, "[[-100000,0,100000]]")]
+        public void TestThreeSum(int[] nums, string expectedStr)
+        {
+            IList<IList<int>> expected = ParseIListOfIListOfInt(expectedStr);
+            var actual = _problems.ThreeSum(nums);
+            Assert.AreEqual(expected.Count, actual.Count);
+            foreach (var i in expected)
+            {
+                var match = false;
+                foreach (var j in actual)
+                {
+                    if (i[0] == j[0] && i[1] == j[1] && i[2] == j[2])
+                    {
+                        match = true;
+                        break;
+                    }
+                }
+                if (!match)
+                {
+                    CollectionAssert.AreEqual(i, actual[0]);
+                }
+            }
+        }
+
+        private IList<IList<int>> ParseIListOfIListOfInt(string str)
+        {
+            IList<IList<int>> expected = new List<IList<int>>();
+            List<int> list = null;
+            string num = "";
+            for (int i = 1; i < str.Length - 1; i++)
+            {
+                if (str[i] == '[')
+                {
+                    list = new List<int>();
+                }
+                else if (str[i] == ']')
+                {
+                    if (num.Length > 0)
+                    {
+                        list.Add(int.Parse(num));
+                        num = "";
+                    }
+                    if (list.Count > 0)
+                    {
+                        expected.Add(list);
+                        list = null;
+                    }
+                }
+                else if (str[i] == ',')
+                {
+                    if (num.Length > 0)
+                    {
+                        list.Add(int.Parse(num));
+                        num = "";
+                    }
+                }
+                else
+                {
+                    num += str[i];
+                }
+            }
+
+            return expected;
+        }
+
+        [Test]
+        public void TestThreeSum()
+        {
+            var nums = new List<int>();
+            for (int i = -300; i < 300; i++)
+            {
+                nums.Add(i * 100);
+            }
+
+            var actual = _problems.ThreeSum(nums.ToArray());
+            Assert.IsNotNull(actual);
         }
     }
 }

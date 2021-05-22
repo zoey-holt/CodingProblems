@@ -571,18 +571,16 @@ namespace CodingProblems
         // If there is no common prefix, return an empty string "".
         public string LongestCommonPrefix(string[] strs)
         {
-            if (strs.Length == 1)
-                return strs[0];
-
             var prefix = strs[0];
             var found = false;
             for (int i = 1; i < strs.Length; i++)
             {
                 for (int j = Math.Min(prefix.Length, strs[i].Length); j > 0; j--)
                 {
-                    if (prefix.Substring(0, j) == strs[i].Substring(0, j))
+                    var test = prefix.Substring(0, j);
+                    if (test == strs[i].Substring(0, j))
                     {
-                        prefix = prefix.Substring(0, j);
+                        prefix = test;
                         found = true;
                         break;
                     }
@@ -593,6 +591,46 @@ namespace CodingProblems
                 found = false;
             }
             return prefix;
+        }
+
+        // 15. 3Sum
+        // Given an integer array nums, return all the triplets [nums[i], nums[j], nums[k]] such that i != j, i != k, and j != k, and nums[i] + nums[j] + nums[k] == 0.
+        // Notice that the solution set must not contain duplicate triplets.
+        public IList<IList<int>> ThreeSum(int[] nums)
+        {
+            if (nums.Length < 3)
+                return new List<IList<int>>();
+
+            var list = new List<IList<int>>();
+            for (int i = 0; i < nums.Length; i++)
+            {
+                for (int j = i + 1; j < nums.Length; j++)
+                {
+                    for (int k = j + 1; k < nums.Length; k++)
+                    {
+                        if (nums[i] + nums[j] + nums[k] == 0)
+                        {
+                            var min = Math.Min(Math.Min(nums[i], nums[j]), nums[k]);
+                            var max = Math.Max(Math.Max(nums[i], nums[j]), nums[k]);
+                            var mid = nums[i] != max && nums[i] != min ? nums[i] : nums[j] != max && nums[j] != min ? nums[j] : nums[k];
+                            var add = true;
+                            foreach (var item in list)
+                            {
+                                if (item[0] == min && item[1] == mid && item[2] == max)
+                                {
+                                    add = false;
+                                    break;
+                                }
+                            }
+                            if (add)
+                            {
+                                list.Add(new int[] { min, mid, max });
+                            }
+                        }
+                    }
+                }
+            }
+            return list;
         }
     }
 }
