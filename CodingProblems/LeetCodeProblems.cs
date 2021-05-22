@@ -632,5 +632,223 @@ namespace CodingProblems
             }
             return list;
         }
+
+        // 16. 3Sum Closest
+        // Given an array nums of n integers and an integer target, find three integers in nums such that the sum is closest to target. Return the sum of the three integers. You may assume that each input would have exactly one solution.
+        // Example 1:
+        // Input: nums = [-1,2,1,-4], target = 1
+        // Output: 2
+        // Explanation: The sum that is closest to the target is 2. (-1 + 2 + 1 = 2).
+        // Constraints:
+        // 3 <= nums.length <= 10^3
+        // -10^3 <= nums[i] <= 10^3
+        // -10^4 <= target <= 10^4
+        public int ThreeSumClosest(int[] nums, int target)
+        {
+            throw new NotImplementedException();
+        }
+
+        // 17. Letter Combinations of a Phone Number
+        // Given a string containing digits from 2-9 inclusive, return all possible letter combinations that the number could represent. Return the answer in any order.
+        // A mapping of digit to letters (just like on the telephone buttons) is given below. Note that 1 does not map to any letters.
+        // Example 1:
+        // Input: digits = "23"
+        // Output: ["ad","ae","af","bd","be","bf","cd","ce","cf"]
+        // Example 2:
+        // Input: digits = ""
+        // Output: []
+        // Example 3:
+        // Input: digits = "2"
+        // Output: ["a","b","c"]
+        // Constraints:
+        // 0 <= digits.length <= 4
+        // digits[i] is a digit in the range ['2', '9'].
+        public IList<string> LetterCombinations(string digits)
+        {
+            throw new NotImplementedException();
+        }
+
+        // 18. 4Sum
+        // Given an array nums of n integers, return an array of all the unique quadruplets [nums[a], nums[b], nums[c], nums[d]] such that:
+        // 0 <= a, b, c, d<n
+        // a, b, c, and d are distinct.
+        // nums[a] + nums[b] + nums[c] + nums[d] == target
+        // You may return the answer in any order.
+        // Example 1:
+        // Input: nums = [1, 0, -1, 0, -2, 2], target = 0
+        // Output: [[-2,-1,1,2],[-2,0,0,2],[-1,0,0,1]]
+        // Example 2:
+        // Input: nums = [2,2,2,2,2], target = 8
+        // Output: [[2,2,2,2]]
+        // Constraints:
+        // 1 <= nums.length <= 200
+        // -109 <= nums[i] <= 109
+        // -109 <= target <= 109
+        public IList<IList<int>> FourSum(int[] nums, int target)
+        {
+            throw new NotImplementedException();
+        }
+
+        // 19. Remove Nth Node From End of List
+        // Given the head of a linked list, remove the nth node from the end of the list and return its head.
+        // Follow up: Could you do this in one pass?
+        // Example 1:
+        // Input: head = [1, 2, 3, 4, 5], n = 2
+        // Output: [1,2,3,5]
+        // Example 2:
+        // Input: head = [1], n = 1
+        // Output: []
+        // Example 3:
+        // Input: head = [1, 2], n = 1
+        // Output: [1]
+        // Constraints:
+        // The number of nodes in the list is sz.
+        // 1 <= sz <= 30
+        // 0 <= Node.val <= 100
+        // 1 <= n <= sz
+        public ListNode RemoveNthFromEnd(ListNode head, int n)
+        {
+            throw new NotImplementedException();
+        }
+
+        // 20. Valid Parentheses
+        // Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
+        // An input string is valid if:
+        // Open brackets must be closed by the same type of brackets.
+        // Open brackets must be closed in the correct order.
+        // Example 1:
+        // Input: s = "()"
+        // Output: true
+        // Example 2:
+        // Input: s = "()[]{}"
+        // Output: true
+        // Example 3:
+        // Input: s = "(]"
+        // Output: false
+        // Example 4:
+        // Input: s = "([)]"
+        // Output: false
+        // Example 5:
+        // Input: s = "{[]}"
+        // Output: true
+        // Constraints:
+        // 1 <= s.length <= 104
+        // s consists of parentheses only '()[]{}'.
+        public bool IsValid(string s)
+        {
+            throw new NotImplementedException();
+        }
+
+        // 21. Merge Two Sorted Lists
+        // Merge two sorted linked lists and return it as a sorted list.The list should be made by splicing together the nodes of the first two lists.
+        // Example 1:
+        // Input: l1 = [1,2,4], l2 = [1,3,4]
+        // Output: [1,1,2,3,4,4]
+        // Example 2:
+        // Input: l1 = [], l2 = []
+        // Output: []
+        // Example 3:
+        // Input: l1 = [], l2 = [0]
+        // Output: [0]
+        // Constraints:
+        // The number of nodes in both lists is in the range[0, 50].
+        // -100 <= Node.val <= 100
+        // Both l1 and l2 are sorted in non-decreasing order.
+        public ListNode MergeTwoLists(ListNode l1, ListNode l2)
+        {
+            throw new NotImplementedException();
+        }
+
+        // 22. Generate Parentheses
+        // Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.
+        // Example 1:
+        // Input: n = 3
+        // Output: ["((()))","(()())","(())()","()(())","()()()"]
+        // Example 2:
+        // Input: n = 1
+        // Output: ["()"]
+        // Constraints:
+        // 1 <= n <= 8
+        public IList<string> GenerateParenthesis(int n)
+        {
+            throw new NotImplementedException();
+        }
+
+        // 23. Merge k Sorted Lists
+        // You are given an array of k linked-lists lists, each linked-list is sorted in ascending order.
+        // Merge all the linked-lists into one sorted linked-list and return it.
+        // Example 1:
+        // Input: lists = [[1, 4, 5], [1,3,4], [2,6]]
+        // Output: [1,1,2,3,4,4,5,6]
+        // Explanation: The linked-lists are:
+        // [
+        // 1->4->5,
+        // 1->3->4,
+        // 2->6
+        // ]
+        // merging them into one sorted list:
+        // 1->1->2->3->4->4->5->6
+        // Example 2:
+        // Input: lists = []
+        // Output: []
+        // Example 3:
+        // Input: lists = [[]]
+        // Output: []
+        // Constraints:
+        // k == lists.length
+        // 0 <= k <= 10^4
+        // 0 <= lists[i].length <= 500
+        // -10^4 <= lists[i][j] <= 10^4
+        // lists[i] is sorted in ascending order.
+        // The sum of lists[i].length won't exceed 10^4.'
+        public ListNode MergeKLists(ListNode[] lists)
+        {
+            throw new NotImplementedException();
+        }
+
+        // 24. Swap Nodes in Pairs
+        // Given a linked list, swap every two adjacent nodes and return its head.You must solve the problem without modifying the values in the list's nodes (i.e., only nodes themselves may be changed.)
+        // Example 1:
+        // Input: head = [1, 2, 3, 4]
+        // Output: [2,1,4,3]
+        // Example 2:
+        // Input: head = []
+        // Output: []
+        // Example 3:
+        // Input: head = [1]
+        // Output: [1]
+        // Constraints:
+        // The number of nodes in the list is in the range [0, 100].
+        // 0 <= Node.val <= 100
+        public ListNode SwapPairs(ListNode head)
+        {
+            throw new NotImplementedException();
+        }
+
+        // 25. Reverse Nodes in k-Group
+        // Given a linked list, reverse the nodes of a linked list k at a time and return its modified list.
+        // k is a positive integer and is less than or equal to the length of the linked list.If the number of nodes is not a multiple of k then left-out nodes, in the end, should remain as it is.
+        // You may not alter the values in the list's nodes, only nodes themselves may be changed.
+        // Example 1:
+        // Input: head = [1,2,3,4,5], k = 2
+        // Output: [2,1,4,3,5]
+        // Example 2:
+        // Input: head = [1,2,3,4,5], k = 3
+        // Output: [3,2,1,4,5]
+        // Example 3:
+        // Input: head = [1,2,3,4,5], k = 1
+        // Output: [1,2,3,4,5]
+        // Example 4:
+        // Input: head = [1], k = 1
+        // Output: [1]
+        // Constraints:           
+        // The number of nodes in the list is in the range sz.
+        // 1 <= sz <= 5000
+        // 0 <= Node.val <= 1000
+        // 1 <= k <= sz
+        public ListNode ReverseKGroup(ListNode head, int k)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
