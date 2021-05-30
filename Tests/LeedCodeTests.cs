@@ -259,10 +259,11 @@ namespace Tests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestCase(new int[] { -1, 0, 1, 2, -1, -4 }, "[[-1,-1,2],[-1,0,1]]")]
+        [TestCase(new int[] { -1, 0, 1, 2, -1, -4 }, "[[-1,0,1],[-1,-1,2]]")]
         [TestCase(new int[] { }, "[]")]
         [TestCase(new int[] { 0 }, "[]")]
         [TestCase(new int[] { 0, 0, 0 }, "[[0,0,0]]")]
+        [TestCase(new int[] { 0, 0, 0, 0 }, "[[0,0,0]]")]
         [TestCase(new int[] { 0, 0, 0, 10, -5, -4, -3, -2, -1 }, "[[0,0,0]]")]
         [TestCase(new int[] { 0, 0, 0, 10, -6, -5, -4, -3, -2, -1 }, "[[0,0,0],[-6,-4,10]]")]
         [TestCase(new int[] { 100000, -100000, 100000 }, "[]")]
@@ -335,7 +336,7 @@ namespace Tests
         public void TestThreeSum()
         {
             var nums = new List<int>();
-            for (int i = -300; i < 300; i++)
+            for (int i = -2500; i < 2500; i++)
             {
                 nums.Add(i * 100);
             }

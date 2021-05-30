@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace CodingProblems
 {
@@ -596,38 +597,45 @@ namespace CodingProblems
         // 15. 3Sum
         // Given an integer array nums, return all the triplets [nums[i], nums[j], nums[k]] such that i != j, i != k, and j != k, and nums[i] + nums[j] + nums[k] == 0.
         // Notice that the solution set must not contain duplicate triplets.
+        // This solution has a time complexity of O(N²Nlog(N)) where N = nums.Length, which reduces to O(N²). 
         public IList<IList<int>> ThreeSum(int[] nums)
         {
             if (nums.Length < 3)
                 return new List<IList<int>>();
 
+            nums = nums.OrderBy(n => n).ToArray();
+
             var list = new List<IList<int>>();
             for (int i = 0; i < nums.Length; i++)
             {
-                for (int j = i + 1; j < nums.Length; j++)
+                if (i > 0 && nums[i] == nums[i - 1])
+                    continue;
+
+                int l = i + 1;
+                int r = nums.Length - 1;
+                while (l < r)
                 {
-                    for (int k = j + 1; k < nums.Length; k++)
+                    if (l > i + 1 && nums[l] == nums[l - 1])
                     {
-                        if (nums[i] + nums[j] + nums[k] == 0)
-                        {
-                            var min = Math.Min(Math.Min(nums[i], nums[j]), nums[k]);
-                            var max = Math.Max(Math.Max(nums[i], nums[j]), nums[k]);
-                            var mid = nums[i] != max && nums[i] != min ? nums[i] : nums[j] != max && nums[j] != min ? nums[j] : nums[k];
-                            var add = true;
-                            foreach (var item in list)
-                            {
-                                if (item[0] == min && item[1] == mid && item[2] == max)
-                                {
-                                    add = false;
-                                    break;
-                                }
-                            }
-                            if (add)
-                            {
-                                list.Add(new int[] { min, mid, max });
-                            }
-                        }
+                        l++;
+                        continue;
                     }
+                    if (r < nums.Length - 1 && nums[r] == nums[r + 1])
+                    {
+                        r--;
+                        continue;
+                    }
+
+                    var sum = nums[i] + nums[l] + nums[r];
+                    if (sum == 0)
+                    {
+                        list.Add(new int[] { nums[i], nums[l], nums[r] });
+                        l++;
+                    }
+                    else if (sum > 0)
+                        r--;
+                    else
+                        l++;
                 }
             }
             return list;
