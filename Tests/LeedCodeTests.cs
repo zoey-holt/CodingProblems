@@ -336,13 +336,26 @@ namespace Tests
         public void TestThreeSum()
         {
             var nums = new List<int>();
-            for (int i = -2500; i < 2500; i++)
+            for (int i = -100; i < 100; i++)
             {
                 nums.Add(i * 100);
             }
 
             var actual = _problems.ThreeSum(nums.ToArray());
             Assert.IsNotNull(actual);
+        }
+
+        [TestCase(new int[] { 0, 0, 0 }, 0, 0)]
+        [TestCase(new int[] { -1, 2, 1, -4 }, 1, 2)]
+        [TestCase(new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 }, 1, 3)]
+        [TestCase(new int[] { 0, 1, 2, 3, 4, 5, 0, 6, 7, 8, 9, 1 }, 1, 1)]
+        [TestCase(new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 }, 11, 11)]
+        [TestCase(new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 }, 100, 24)]
+        [TestCase(new int[] { 0, 1, 2, 3, 4, 5, 10, 6, 7, 8, 9, 1 }, 25, 25)]
+        public void TestThreeSumClosest(int[] nums, int target, int expected)
+        {
+            var actual = _problems.ThreeSumClosest(nums, target);
+            Assert.AreEqual(expected, actual);
         }
     }
 }

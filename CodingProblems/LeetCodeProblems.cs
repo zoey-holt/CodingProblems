@@ -627,15 +627,15 @@ namespace CodingProblems
                     }
 
                     var sum = nums[i] + nums[l] + nums[r];
-                    if (sum == 0)
+                    if (sum > 0)
+                        r--;
+                    else if (sum < 0)
+                        l++;
+                    else
                     {
                         list.Add(new int[] { nums[i], nums[l], nums[r] });
                         l++;
                     }
-                    else if (sum > 0)
-                        r--;
-                    else
-                        l++;
                 }
             }
             return list;
@@ -643,17 +643,51 @@ namespace CodingProblems
 
         // 16. 3Sum Closest
         // Given an array nums of n integers and an integer target, find three integers in nums such that the sum is closest to target. Return the sum of the three integers. You may assume that each input would have exactly one solution.
-        // Example 1:
-        // Input: nums = [-1,2,1,-4], target = 1
-        // Output: 2
-        // Explanation: The sum that is closest to the target is 2. (-1 + 2 + 1 = 2).
-        // Constraints:
-        // 3 <= nums.length <= 10^3
-        // -10^3 <= nums[i] <= 10^3
-        // -10^4 <= target <= 10^4
+        // This solution has a time complexity of O(N²Nlog(N)) where N = nums.Length, which reduces to O(N²). 
         public int ThreeSumClosest(int[] nums, int target)
         {
-            throw new NotImplementedException();
+            bool closestSet = false;
+            int closest = 0;
+            nums = nums.OrderBy(n => n).ToArray();
+
+            for (int i = 0; i < nums.Length; i++)
+            {
+                if (i > 0 && nums[i] == nums[i - 1])
+                    continue;
+
+                int l = i + 1;
+                int r = nums.Length - 1;
+                while (l < r)
+                {
+                    if (closestSet && l > i + 1 && nums[l] == nums[l - 1])
+                    {
+                        l++;
+                        continue;
+                    }
+                    if (closestSet && r < nums.Length - 1 && nums[r] == nums[r + 1])
+                    {
+                        r--;
+                        continue;
+                    }
+
+                    var sum = nums[i] + nums[l] + nums[r];
+                    if (sum == target)
+                        return sum;
+
+                    if (Math.Abs(sum - target) < Math.Abs(closest - target) || !closestSet)
+                    {
+                        closestSet = true;
+                        closest = sum;
+                    }
+
+                    if (sum < target) 
+                        l++;
+                    else 
+                        r--;
+                }
+            }
+
+            return closest;
         }
 
         // 17. Letter Combinations of a Phone Number
