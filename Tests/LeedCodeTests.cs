@@ -357,5 +357,20 @@ namespace Tests
             var actual = _problems.ThreeSumClosest(nums, target);
             Assert.AreEqual(expected, actual);
         }
+
+        [TestCase("", new string[] { })]
+        [TestCase("2", new string[] { "a", "b", "c" })]
+        [TestCase("23", new string[] { "ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf" })]
+        [TestCase("222", new string[] { 
+            "aaa", "aab", "aac", "aba", "abb", "abc", "aca", "acb", "acc",
+            "bbb", "bbc", "bba", "bcb", "bcc", "bca", "bab", "bac", "baa",
+            "ccc", "cca", "ccb", "cac", "caa", "cab", "cbc", "cba", "cbb",
+        })]
+        [TestCase("27", new string[] { "ap", "aq", "ar", "as", "bp", "bq", "br", "bs", "cp", "cq", "cr", "cs" })]
+        public void TestLetterCombinations(string digits, IList<string> expected)
+        {
+            var actual = _problems.LetterCombinations(digits);
+            CollectionAssert.AreEquivalent(expected, actual);
+        }
     }
 }

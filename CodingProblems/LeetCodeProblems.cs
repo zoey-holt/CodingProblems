@@ -693,21 +693,39 @@ namespace CodingProblems
         // 17. Letter Combinations of a Phone Number
         // Given a string containing digits from 2-9 inclusive, return all possible letter combinations that the number could represent. Return the answer in any order.
         // A mapping of digit to letters (just like on the telephone buttons) is given below. Note that 1 does not map to any letters.
-        // Example 1:
-        // Input: digits = "23"
-        // Output: ["ad","ae","af","bd","be","bf","cd","ce","cf"]
-        // Example 2:
-        // Input: digits = ""
-        // Output: []
-        // Example 3:
-        // Input: digits = "2"
-        // Output: ["a","b","c"]
-        // Constraints:
-        // 0 <= digits.length <= 4
-        // digits[i] is a digit in the range ['2', '9'].
+        // This solution has a time complexity of O(C^N) where N = digits.Length and C = the max length of the array of letters corresponding to a keypad number (4). 
+        private static readonly Dictionary<char, char[]> _keypad = new Dictionary<char, char[]>
+            {
+                { '2', new char[] { 'a', 'b', 'c' } },
+                { '3', new char[] { 'd', 'e', 'f' } },
+                { '4', new char[] { 'g', 'h', 'i' } },
+                { '5', new char[] { 'j', 'k', 'l' } },
+                { '6', new char[] { 'm', 'n', 'o' } },
+                { '7', new char[] { 'p', 'q', 'r', 's' } },
+                { '8', new char[] { 't', 'u', 'v' } },
+                { '9', new char[] { 'w', 'x', 'y', 'z' } },
+            };
+
         public IList<string> LetterCombinations(string digits)
         {
-            throw new NotImplementedException();
+            var result = new List<string>();
+            LetterCombinations("", digits, 0, result);
+            return result;
+        }
+
+        private void LetterCombinations(string prefix, string digits, int index, List<string> result)
+        {
+            if (index < digits.Length)
+            {
+                foreach (char letter in _keypad[digits[index]])
+                {
+                    LetterCombinations(prefix + letter, digits, index + 1, result);
+                }
+            }
+            else if (prefix.Length > 0)
+            {
+                result.Add(prefix);
+            }
         }
 
         // 18. 4Sum
