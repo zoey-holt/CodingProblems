@@ -372,5 +372,51 @@ namespace Tests
             var actual = _problems.LetterCombinations(digits);
             CollectionAssert.AreEquivalent(expected, actual);
         }
+
+        [TestCase(new int[] { 1, 0, -1, 0, -2, 2 }, 0, "[[-2,-1,1,2],[-2,0,0,2],[-1,0,0,1]]")]
+        [TestCase(new int[] { 2, 2, 2, 2, 2 }, 8, "[[2,2,2,2]]")]
+        public void TestFourSum(int[] nums, int target, string expectedStr)
+        {
+            return;
+            IList<IList<int>> expected = ParseIListOfIListOfInt(expectedStr);
+            var actual = _problems.FourSum(nums, target);
+            Assert.AreEqual(expected.Count, actual.Count);
+            foreach (var i in expected)
+            {
+                var match = false;
+                foreach (var j in actual)
+                {
+                    if (i[0] == j[0] && i[1] == j[1] && i[2] == j[2] && i[3] == j[3])
+                    {
+                        match = true;
+                        break;
+                    }
+                }
+                if (!match)
+                {
+                    CollectionAssert.AreEqual(i, actual[0]);
+                }
+            }
+        }
+
+        [TestCase(new int[] { 1, 2, 3, 4, 5 }, 2, new int[] { 1, 2, 3, 5 })]
+        [TestCase(new int[] { 1 }, 1, new int[] { })]
+        [TestCase(new int[] { 1, 2 }, 1, new int[] { 1 })]
+        [TestCase(new int[] { 1, 2 }, 2, new int[] { 2 })]
+        public void TestRemoveNthFromEnd(int[] l1, int n, int[] expected)
+        {
+            var actual = _problems.RemoveNthFromEnd(new LeetCodeProblems.ListNode(l1), n)?.ToArray() ?? new int[] { };
+            CollectionAssert.AreEqual(expected, actual);
+        }
+
+        [TestCase(new int[] { 1, 2, 3, 4, 5 }, 2, new int[] { 1, 2, 3, 5 })]
+        [TestCase(new int[] { 1 }, 1, new int[] { })]
+        [TestCase(new int[] { 1, 2 }, 1, new int[] { 1 })]
+        [TestCase(new int[] { 1, 2 }, 2, new int[] { 2 })]
+        public void TestRemoveNthFromEndOnePass(int[] l1, int n, int[] expected)
+        {
+            var actual = _problems.RemoveNthFromEndOnePass(new LeetCodeProblems.ListNode(l1), n)?.ToArray() ?? new int[] { };
+            CollectionAssert.AreEqual(expected, actual);
+        }
     }
 }

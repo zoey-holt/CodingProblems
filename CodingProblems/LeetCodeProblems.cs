@@ -10,6 +10,7 @@ namespace CodingProblems
         // Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
         // You may assume that each input would have exactly one solution, and you may not use the same element twice.
         // You can return the answer in any order.
+        // This solution has a time complexity of O(N²) where N = nums.Length.
         public int[] TwoSum(int[] nums, int target)
         {
             var result = new List<int>();
@@ -597,7 +598,7 @@ namespace CodingProblems
         // 15. 3Sum
         // Given an integer array nums, return all the triplets [nums[i], nums[j], nums[k]] such that i != j, i != k, and j != k, and nums[i] + nums[j] + nums[k] == 0.
         // Notice that the solution set must not contain duplicate triplets.
-        // This solution has a time complexity of O(N²Nlog(N)) where N = nums.Length, which reduces to O(N²). 
+        // This solution has a time complexity of O(N²*Nlog(N)) where N = nums.Length, which reduces to O(N²). 
         public IList<IList<int>> ThreeSum(int[] nums)
         {
             if (nums.Length < 3)
@@ -730,20 +731,14 @@ namespace CodingProblems
 
         // 18. 4Sum
         // Given an array nums of n integers, return an array of all the unique quadruplets [nums[a], nums[b], nums[c], nums[d]] such that:
-        // 0 <= a, b, c, d<n
+        // 0 <= a, b, c, d < n
         // a, b, c, and d are distinct.
         // nums[a] + nums[b] + nums[c] + nums[d] == target
         // You may return the answer in any order.
-        // Example 1:
-        // Input: nums = [1, 0, -1, 0, -2, 2], target = 0
-        // Output: [[-2,-1,1,2],[-2,0,0,2],[-1,0,0,1]]
-        // Example 2:
-        // Input: nums = [2,2,2,2,2], target = 8
-        // Output: [[2,2,2,2]]
         // Constraints:
         // 1 <= nums.length <= 200
-        // -109 <= nums[i] <= 109
-        // -109 <= target <= 109
+        // -10^9 <= nums[i] <= 10^9
+        // -10^9 <= target <= 10^9
         public IList<IList<int>> FourSum(int[] nums, int target)
         {
             throw new NotImplementedException();
@@ -752,23 +747,47 @@ namespace CodingProblems
         // 19. Remove Nth Node From End of List
         // Given the head of a linked list, remove the nth node from the end of the list and return its head.
         // Follow up: Could you do this in one pass?
-        // Example 1:
-        // Input: head = [1, 2, 3, 4, 5], n = 2
-        // Output: [1,2,3,5]
-        // Example 2:
-        // Input: head = [1], n = 1
-        // Output: []
-        // Example 3:
-        // Input: head = [1, 2], n = 1
-        // Output: [1]
-        // Constraints:
-        // The number of nodes in the list is sz.
-        // 1 <= sz <= 30
-        // 0 <= Node.val <= 100
-        // 1 <= n <= sz
+        // This solution has a time complexity of O(N) where N = the number of nodes in the list. 
+        // This solution has a space complexity of O(1). 
         public ListNode RemoveNthFromEnd(ListNode head, int n)
         {
-            throw new NotImplementedException();
+            int i = 0;
+            var current = head;
+            while (current.next != null)
+            {
+                current = current.next;
+                i++;
+            }
+
+            if (i + 1 == n)
+                return head.next;
+
+            current = head;
+            for (int j = 0; j < i - n; j++)
+            {
+                current = current.next;
+            }
+            current.next = current.next.next;
+            return head;
+        }
+
+        // 19. Remove Nth Node From End of List
+        // Given the head of a linked list, remove the nth node from the end of the list and return its head.
+        // Follow up: Could you do this in one pass?
+        // This solution has a time complexity of O(N) where N = the number of nodes in the list. 
+        // This solution has a space complexity of O(N) where N = the number of nodes in the list. 
+        public ListNode RemoveNthFromEndOnePass(ListNode head, int n)
+        {
+            var nodes = new List<int>();
+            var current = head;
+            while (current != null)
+            {
+                nodes.Add(current.val);
+                current = current.next;
+            }
+
+            nodes.RemoveAt(nodes.Count - n);
+            return nodes.Count > 0 ? new ListNode(nodes.ToArray()) : null;
         }
 
         // 20. Valid Parentheses
