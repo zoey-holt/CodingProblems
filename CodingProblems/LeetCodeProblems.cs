@@ -775,19 +775,28 @@ namespace CodingProblems
         // Given the head of a linked list, remove the nth node from the end of the list and return its head.
         // Follow up: Could you do this in one pass?
         // This solution has a time complexity of O(N) where N = the number of nodes in the list. 
-        // This solution has a space complexity of O(N) where N = the number of nodes in the list. 
+        // This solution has a space complexity of O(1). 
         public ListNode RemoveNthFromEndOnePass(ListNode head, int n)
         {
-            var nodes = new List<int>();
-            var current = head;
-            while (current != null)
+            var ahead = head;
+            var behind = head;
+            var i = 0;
+            while (i < n + 1 && ahead != null)
             {
-                nodes.Add(current.val);
-                current = current.next;
+                ahead = ahead.next;
+                i++;
             }
-
-            nodes.RemoveAt(nodes.Count - n);
-            return nodes.Count > 0 ? new ListNode(nodes.ToArray()) : null;
+            while (ahead != null)
+            {
+                ahead = ahead.next;
+                behind = behind.next;
+            }
+            if (i == n)
+            {
+                return head.next;
+            }
+            behind.next = behind.next.next;
+            return head;
         }
 
         // 20. Valid Parentheses
@@ -819,7 +828,7 @@ namespace CodingProblems
         }
 
         // 21. Merge Two Sorted Lists
-        // Merge two sorted linked lists and return it as a sorted list.The list should be made by splicing together the nodes of the first two lists.
+        // Merge two sorted linked lists and return it as a sorted list. The list should be made by splicing together the nodes of the first two lists.
         // Example 1:
         // Input: l1 = [1,2,4], l2 = [1,3,4]
         // Output: [1,1,2,3,4,4]
