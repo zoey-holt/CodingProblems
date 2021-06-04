@@ -418,5 +418,20 @@ namespace Tests
             var actual = _problems.RemoveNthFromEndOnePass(new LeetCodeProblems.ListNode(l1), n)?.ToArray() ?? new int[] { };
             CollectionAssert.AreEqual(expected, actual);
         }
+
+        [TestCase("()", true)]
+        [TestCase("()[]{}", true)]
+        [TestCase("(]", false)]
+        [TestCase("([)]", false)]
+        [TestCase("{[]}", true)]
+        [TestCase("((", false)]
+        [TestCase("(){}}{", false)]
+        [TestCase("[[[]", false)]
+        [TestCase("(())", true)]
+        public void TestValidParentheses(string s, bool expected)
+        {
+            var actual = _problems.ValidParentheses(s);
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
