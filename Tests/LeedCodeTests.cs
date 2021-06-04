@@ -433,5 +433,14 @@ namespace Tests
             var actual = _problems.ValidParentheses(s);
             Assert.AreEqual(expected, actual);
         }
+
+        [TestCase(new int[] { 1, 2, 4 }, new int[] { 1, 3, 4 }, new int[] { 1, 1, 2, 3, 4, 4 })]
+        [TestCase(new int[] { }, new int[] { }, new int[] { })]
+        [TestCase(new int[] { }, new int[] { 0 }, new int[] { 0 })]
+        public void TestMergeTwoLists(int[] l1, int[] l2, int[] expected)
+        {
+            var actual = _problems.MergeTwoLists(l1.Any() ? new LeetCodeProblems.ListNode(l1) : null, l2.Any() ? new LeetCodeProblems.ListNode(l2) : null)?.ToArray() ?? new int[] { };
+            CollectionAssert.AreEquivalent(expected, actual);
+        }
     }
 }

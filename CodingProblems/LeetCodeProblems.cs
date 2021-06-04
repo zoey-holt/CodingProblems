@@ -841,22 +841,38 @@ namespace CodingProblems
 
         // 21. Merge Two Sorted Lists
         // Merge two sorted linked lists and return it as a sorted list. The list should be made by splicing together the nodes of the first two lists.
-        // Example 1:
-        // Input: l1 = [1,2,4], l2 = [1,3,4]
-        // Output: [1,1,2,3,4,4]
-        // Example 2:
-        // Input: l1 = [], l2 = []
-        // Output: []
-        // Example 3:
-        // Input: l1 = [], l2 = [0]
-        // Output: [0]
-        // Constraints:
-        // The number of nodes in both lists is in the range[0, 50].
-        // -100 <= Node.val <= 100
-        // Both l1 and l2 are sorted in non-decreasing order.
         public ListNode MergeTwoLists(ListNode l1, ListNode l2)
         {
-            throw new NotImplementedException();
+            ListNode merge = null;
+            ListNode current = null;
+            while (true)
+            {
+                if (l1 == null && l2 == null)
+                    break;
+
+                if (merge == null)
+                {
+                    merge = new ListNode();
+                    current = merge;
+                }
+                else
+                {
+                    current.next = new ListNode();
+                    current = current.next;
+                }
+
+                if (l2 == null || (l1 != null && l2 != null && l1.val <= l2.val))
+                {
+                    current.val = l1.val;
+                    l1 = l1.next;
+                }
+                else
+                {
+                    current.val = l2.val;
+                    l2 = l2.next;
+                }
+            }
+            return merge;
         }
 
         // 22. Generate Parentheses
