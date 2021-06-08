@@ -440,7 +440,42 @@ namespace Tests
         public void TestMergeTwoLists(int[] l1, int[] l2, int[] expected)
         {
             var actual = _problems.MergeTwoLists(l1.Any() ? new LeetCodeProblems.ListNode(l1) : null, l2.Any() ? new LeetCodeProblems.ListNode(l2) : null)?.ToArray() ?? new int[] { };
-            CollectionAssert.AreEquivalent(expected, actual);
+            CollectionAssert.AreEqual(expected, actual);
+        }
+
+        //[TestCase(1, new string[] { "()" })]
+        //[TestCase(2, new string[] { "(())", "()()", })]
+        //[TestCase(3, new string[] { "((()))", "(()())", "(())()", "()(())", "()()()" })]
+        //public void TestGenerateParentheses(int n, string[] expected)
+        //{
+        //    var actual = _problems.GenerateParentheses(n);
+        //    CollectionAssert.AreEquivalent(expected, actual);
+        //}
+
+        [TestCase(new int[] { 1, 2, 3, 4 }, new int[] { 2, 1, 4, 3 })]
+        [TestCase(new int[] { }, new int[] { })]
+        [TestCase(new int[] { 1 }, new int[] { 1 })]
+        [TestCase(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }, new int[] { 2, 1, 4, 3, 6, 5, 8, 7, 10, 9 })]
+        public void TestSwapPairs(int[] head, int[] expected)
+        {
+            var actual = _problems.SwapPairs(head.Any() ? new LeetCodeProblems.ListNode(head) : null)?.ToArray() ?? new int[] { };
+            CollectionAssert.AreEqual(expected, actual, "Expected: [{0}] but was: [{1}].", string.Join(",", expected), string.Join(",", actual));
+        }
+
+        [TestCase(new int[] { 1 }, 1, new int[] { 1 })]
+        [TestCase(new int[] { 1, 2 }, 2, new int[] { 2, 1 })]
+        [TestCase(new int[] { 1, 2, 3, 4, 5 }, 2, new int[] { 2, 1, 4, 3, 5 })]
+        [TestCase(new int[] { 1, 2, 3, 4, 5 }, 3, new int[] { 3, 2, 1, 4, 5 })]
+        [TestCase(new int[] { 1, 2, 3, 4, 5 }, 1, new int[] { 1, 2, 3, 4, 5 })]
+        [TestCase(new int[] { 1, 2, 3, 4, 5, 6 }, 3, new int[] { 3, 2, 1, 6, 5, 4 })]
+        [TestCase(new int[] { 1, 2, 3, 4, 5, 6 }, 2, new int[] { 2, 1, 4, 3, 6, 5 })]
+        [TestCase(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }, 2, new int[] { 2, 1, 4, 3, 6, 5, 8, 7, 10, 9 })]
+        [TestCase(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 }, 3, new int[] { 3, 2, 1, 6, 5, 4, 9, 8, 7, 12, 11, 10 })]
+        [TestCase(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 }, 4, new int[] { 4, 3, 2, 1, 8, 7, 6, 5, 12, 11, 10, 9, 16, 15, 14, 13 })]
+        public void TestReverseKGroup(int[] l1, int k, int[] expected)
+        {
+            var actual = _problems.ReverseKGroup(new LeetCodeProblems.ListNode(l1), k)?.ToArray() ?? new int[] { };
+            CollectionAssert.AreEqual(expected, actual, "Expected: [{0}] but was: [{1}].", string.Join(",", expected), string.Join(",", actual));
         }
     }
 }

@@ -644,7 +644,7 @@ namespace CodingProblems
 
         // 16. 3Sum Closest
         // Given an array nums of n integers and an integer target, find three integers in nums such that the sum is closest to target. Return the sum of the three integers. You may assume that each input would have exactly one solution.
-        // This solution has a time complexity of O(N²Nlog(N)) where N = nums.Length, which reduces to O(N²). 
+        // This solution has a time complexity of O(N²*Nlog(N)) where N = nums.Length, which reduces to O(N²). 
         public int ThreeSumClosest(int[] nums, int target)
         {
             bool closestSet = false;
@@ -747,7 +747,7 @@ namespace CodingProblems
         // 19. Remove Nth Node From End of List
         // Given the head of a linked list, remove the nth node from the end of the list and return its head.
         // Follow up: Could you do this in one pass?
-        // This solution has a time complexity of O(N) where N = the number of nodes in the list. 
+        // This solution has a time complexity of O(N) where N = the number of nodes in head. 
         // This solution has a space complexity of O(1). 
         public ListNode RemoveNthFromEnd(ListNode head, int n)
         {
@@ -774,7 +774,7 @@ namespace CodingProblems
         // 19. Remove Nth Node From End of List
         // Given the head of a linked list, remove the nth node from the end of the list and return its head.
         // Follow up: Could you do this in one pass?
-        // This solution has a time complexity of O(N) where N = the number of nodes in the list. 
+        // This solution has a time complexity of O(N) where N = the number of nodes in head. 
         // This solution has a space complexity of O(1). 
         public ListNode RemoveNthFromEndOnePass(ListNode head, int n)
         {
@@ -804,8 +804,8 @@ namespace CodingProblems
         // An input string is valid if:
         // Open brackets must be closed by the same type of brackets.
         // Open brackets must be closed in the correct order.
-        // This solution has a time complexity of O(N) where N = the number of nodes in the list. 
-        // This solution has a space complexity of O(N) where N = the number of nodes in the list. 
+        // This solution has a time complexity of O(N) where N = the length of the string s. 
+        // This solution has a space complexity of O(N) where N = the length of the string s. 
         public bool ValidParentheses(string s)
         {
             if (s.Length % 2 != 0)
@@ -841,6 +841,8 @@ namespace CodingProblems
 
         // 21. Merge Two Sorted Lists
         // Merge two sorted linked lists and return it as a sorted list. The list should be made by splicing together the nodes of the first two lists.
+        // This solution has a time complexity of O(N₁+N₂) where N₁ = the number of nodes in l1 and N₂ = the number of nodes in l2. 
+        // This solution has a space complexity of O(N₁+N₂) where N₁ = the number of nodes in l1 and N₂ = the number of nodes in l2. 
         public ListNode MergeTwoLists(ListNode l1, ListNode l2)
         {
             ListNode merge = null;
@@ -848,7 +850,7 @@ namespace CodingProblems
             while (true)
             {
                 if (l1 == null && l2 == null)
-                    break;
+                    return merge;
 
                 if (merge == null)
                 {
@@ -872,22 +874,34 @@ namespace CodingProblems
                     l2 = l2.next;
                 }
             }
-            return merge;
         }
 
         // 22. Generate Parentheses
         // Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.
-        // Example 1:
-        // Input: n = 3
-        // Output: ["((()))","(()())","(())()","()(())","()()()"]
-        // Example 2:
-        // Input: n = 1
-        // Output: ["()"]
-        // Constraints:
-        // 1 <= n <= 8
-        public IList<string> GenerateParenthesis(int n)
+        public IList<string> GenerateParentheses(int n)
         {
             throw new NotImplementedException();
+            //var result = new List<string>();
+
+            //if (n == 0)
+            //{
+            //    result.Add("");
+            //}
+            //else
+            //{
+            //    for (int i = 0; i < n; i++)
+            //    {
+            //        foreach (var open in GenerateParentheses(i))
+            //        {
+            //            foreach (var close in GenerateParentheses(n - i - 1))
+            //            {
+            //                result.Add($"({open}){close}");
+            //            }
+            //        }
+            //    }
+            //}
+
+            //return result;
         }
 
         // 23. Merge k Sorted Lists
@@ -923,48 +937,102 @@ namespace CodingProblems
         }
 
         // 24. Swap Nodes in Pairs
-        // Given a linked list, swap every two adjacent nodes and return its head.You must solve the problem without modifying the values in the list's nodes (i.e., only nodes themselves may be changed.)
-        // Example 1:
-        // Input: head = [1, 2, 3, 4]
-        // Output: [2,1,4,3]
-        // Example 2:
-        // Input: head = []
-        // Output: []
-        // Example 3:
-        // Input: head = [1]
-        // Output: [1]
-        // Constraints:
+        // Given a linked list, swap every two adjacent nodes and return its head. You must solve the problem without modifying the values in the list's nodes (i.e., only nodes themselves may be changed.)
         // The number of nodes in the list is in the range [0, 100].
-        // 0 <= Node.val <= 100
+        // This solution has a time complexity of O(N) where N = the number of nodes in head. 
+        // This solution has a space complexity of O(1). 
         public ListNode SwapPairs(ListNode head)
         {
-            throw new NotImplementedException();
+            if (head?.next == null)
+                return head;
+
+            ListNode a = null;
+            ListNode b = head;
+            ListNode c = head.next;
+            ListNode d = head.next?.next;
+            bool reverse = true;
+            head = head.next;
+            while (c != null)
+            {
+                if (reverse)
+                {
+                    if (a != null)
+                        a.next = c;
+                    c.next = b;
+                    b.next = d;
+                }
+
+                a = a == null ? c : a.next;
+                b = a.next;
+                c = a.next?.next;
+                d = a.next?.next?.next;
+                reverse = !reverse;
+            }
+            return head;
         }
 
         // 25. Reverse Nodes in k-Group
         // Given a linked list, reverse the nodes of a linked list k at a time and return its modified list.
-        // k is a positive integer and is less than or equal to the length of the linked list.If the number of nodes is not a multiple of k then left-out nodes, in the end, should remain as it is.
+        // k is a positive integer and is less than or equal to the length of the linked list. If the number of nodes is not a multiple of k then left-out nodes, in the end, should remain as is.
         // You may not alter the values in the list's nodes, only nodes themselves may be changed.
-        // Example 1:
-        // Input: head = [1,2,3,4,5], k = 2
-        // Output: [2,1,4,3,5]
-        // Example 2:
-        // Input: head = [1,2,3,4,5], k = 3
-        // Output: [3,2,1,4,5]
-        // Example 3:
-        // Input: head = [1,2,3,4,5], k = 1
-        // Output: [1,2,3,4,5]
-        // Example 4:
-        // Input: head = [1], k = 1
-        // Output: [1]
-        // Constraints:           
-        // The number of nodes in the list is in the range sz.
-        // 1 <= sz <= 5000
-        // 0 <= Node.val <= 1000
-        // 1 <= k <= sz
+        // This solution has a time complexity of O(N) where N = the number of nodes in head. 
+        // This solution has a space complexity of O(1). 
         public ListNode ReverseKGroup(ListNode head, int k)
         {
-            throw new NotImplementedException();
+            if (k == 1)
+                return head;
+
+            ListNode newHead = null;
+            ListNode previous = null;
+            ListNode current = head;
+            ListNode next = head.next;
+            ListNode groupHead;
+            ListNode previousTail = null;
+            ListNode groupTail = null;
+            int remainder = 1;
+
+            while (current != null)
+            {
+                for (int i = 0; i < k; i++)
+                {
+                    if (i == 0)
+                    {
+                        if (groupTail == null)
+                        {
+                            groupTail = current;
+                        }
+                        else
+                        {
+                            previousTail = groupTail;
+                            groupTail = current;
+                        }
+                    }
+                    current.next = previous;
+                    previous = current;
+                    current = next;
+                    if (next == null)
+                    {
+                        remainder += i;
+                        break;
+                    }
+                    next = next.next;
+                }
+
+                groupHead = previous;
+                if (newHead == null)
+                {
+                    newHead = groupHead;
+                }
+                else
+                {
+                    groupTail.next = null;
+                    previousTail.next = remainder > 1 && remainder % k != 0 
+                        ? ReverseKGroup(groupHead, remainder) // put the remainder back in the original order if there was any
+                        : groupHead;
+                }
+            }
+
+            return newHead;
         }
     }
 }
