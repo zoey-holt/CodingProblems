@@ -644,7 +644,7 @@ namespace CodingProblems
 
         // 16. 3Sum Closest
         // Given an array nums of n integers and an integer target, find three integers in nums such that the sum is closest to target. Return the sum of the three integers. You may assume that each input would have exactly one solution.
-        // This solution has a time complexity of O(N²*Nlog(N)) where N = nums.Length, which reduces to O(N²). 
+        // This solution has a time complexity of O(N²+Nlog(N)) where N = nums.Length, which reduces to O(N²). 
         public int ThreeSumClosest(int[] nums, int target)
         {
             bool closestSet = false;
@@ -907,33 +907,26 @@ namespace CodingProblems
         // 23. Merge k Sorted Lists
         // You are given an array of k linked-lists lists, each linked-list is sorted in ascending order.
         // Merge all the linked-lists into one sorted linked-list and return it.
-        // Example 1:
-        // Input: lists = [[1, 4, 5], [1,3,4], [2,6]]
-        // Output: [1,1,2,3,4,4,5,6]
-        // Explanation: The linked-lists are:
-        // [
-        // 1->4->5,
-        // 1->3->4,
-        // 2->6
-        // ]
-        // merging them into one sorted list:
-        // 1->1->2->3->4->4->5->6
-        // Example 2:
-        // Input: lists = []
-        // Output: []
-        // Example 3:
-        // Input: lists = [[]]
-        // Output: []
-        // Constraints:
-        // k == lists.length
-        // 0 <= k <= 10^4
-        // 0 <= lists[i].length <= 500
-        // -10^4 <= lists[i][j] <= 10^4
-        // lists[i] is sorted in ascending order.
-        // The sum of lists[i].length won't exceed 10^4.'
+        // This solution has a time complexity of O(N*L*log(N)) where N = the number of lists in lists and L = the length of the longest list in lists.
+        // This solution has a space complexity of ???
         public ListNode MergeKLists(ListNode[] lists)
         {
-            throw new NotImplementedException();
+            if (lists.Length == 0)
+                return null;
+
+            var half = lists.Length / 2;
+            var even = lists.Length % 2 == 0;
+            ListNode[] merges = new ListNode[even ? half : half + 1];
+
+            for (int i = 0; i + 1 < lists.Length; i += 2)
+            {
+                merges[i / 2] = MergeTwoLists(lists[i], lists[i + 1]);
+            }
+
+            if (!even)
+                merges[merges.Length - 1] = lists[lists.Length - 1];
+
+            return merges.Length > 1 ? MergeKLists(merges) : merges[0];
         }
 
         // 24. Swap Nodes in Pairs

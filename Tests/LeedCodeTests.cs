@@ -373,31 +373,30 @@ namespace Tests
             CollectionAssert.AreEquivalent(expected, actual);
         }
 
-        [TestCase(new int[] { 1, 0, -1, 0, -2, 2 }, 0, "[[-2,-1,1,2],[-2,0,0,2],[-1,0,0,1]]")]
-        [TestCase(new int[] { 2, 2, 2, 2, 2 }, 8, "[[2,2,2,2]]")]
-        public void TestFourSum(int[] nums, int target, string expectedStr)
-        {
-            return;
-            IList<IList<int>> expected = ParseIListOfIListOfInt(expectedStr);
-            var actual = _problems.FourSum(nums, target);
-            Assert.AreEqual(expected.Count, actual.Count);
-            foreach (var i in expected)
-            {
-                var match = false;
-                foreach (var j in actual)
-                {
-                    if (i[0] == j[0] && i[1] == j[1] && i[2] == j[2] && i[3] == j[3])
-                    {
-                        match = true;
-                        break;
-                    }
-                }
-                if (!match)
-                {
-                    CollectionAssert.AreEqual(i, actual[0]);
-                }
-            }
-        }
+        //[TestCase(new int[] { 1, 0, -1, 0, -2, 2 }, 0, "[[-2,-1,1,2],[-2,0,0,2],[-1,0,0,1]]")]
+        //[TestCase(new int[] { 2, 2, 2, 2, 2 }, 8, "[[2,2,2,2]]")]
+        //public void TestFourSum(int[] nums, int target, string expectedStr)
+        //{
+        //    IList<IList<int>> expected = ParseIListOfIListOfInt(expectedStr);
+        //    var actual = _problems.FourSum(nums, target);
+        //    Assert.AreEqual(expected.Count, actual.Count);
+        //    foreach (var i in expected)
+        //    {
+        //        var match = false;
+        //        foreach (var j in actual)
+        //        {
+        //            if (i[0] == j[0] && i[1] == j[1] && i[2] == j[2] && i[3] == j[3])
+        //            {
+        //                match = true;
+        //                break;
+        //            }
+        //        }
+        //        if (!match)
+        //        {
+        //            CollectionAssert.AreEqual(i, actual[0]);
+        //        }
+        //    }
+        //}
 
         [TestCase(new int[] { 1, 2, 3, 4, 5 }, 2, new int[] { 1, 2, 3, 5 })]
         [TestCase(new int[] { 1 }, 1, new int[] { })]
@@ -451,6 +450,17 @@ namespace Tests
         //    var actual = _problems.GenerateParentheses(n);
         //    CollectionAssert.AreEquivalent(expected, actual);
         //}
+
+        [TestCase("[]", new int[] { })]
+        [TestCase("[[]]", new int[] { })]
+        [TestCase("[[1],[2],[3]]", new int[] { 1, 2, 3 })]
+        [TestCase("[[1,4,5],[1,3,4],[2,6]]", new int[] { 1, 1, 2, 3, 4, 4, 5, 6 })]
+        public void TestMergeKLists(string listsStr, int[] expected)
+        {
+            var lists = ParseIListOfIListOfInt(listsStr).Select(l => new LeetCodeProblems.ListNode(l.ToArray())).ToArray();
+            var actual = _problems.MergeKLists(lists)?.ToArray() ?? new int[] { };
+            CollectionAssert.AreEqual(expected, actual);
+        }
 
         [TestCase(new int[] { 1, 2, 3, 4 }, new int[] { 2, 1, 4, 3 })]
         [TestCase(new int[] { }, new int[] { })]
