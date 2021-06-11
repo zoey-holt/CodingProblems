@@ -852,27 +852,32 @@ namespace CodingProblems
                 if (l1 == null && l2 == null)
                     return merge;
 
-                if (merge == null)
-                {
-                    merge = new ListNode();
-                    current = merge;
-                }
-                else
-                {
-                    current.next = new ListNode();
-                    current = current.next;
-                }
-
                 if (l2 == null || (l1 != null && l2 != null && l1.val <= l2.val))
                 {
-                    current.val = l1.val;
+                    if (current == null)
+                        current = l1;
+                    else
+                    {
+                        current.next = l1;
+                        current = current.next;
+                    }
                     l1 = l1.next;
                 }
                 else
                 {
-                    current.val = l2.val;
+                    if (current == null)
+                        current = l2;
+                    else
+                    {
+                        current.next = l2;
+                        current = current.next;
+                    }
                     l2 = l2.next;
                 }
+                current.next = null;
+
+                if (merge == null)
+                    merge = current;
             }
         }
 

@@ -439,7 +439,7 @@ namespace Tests
         public void TestMergeTwoLists(int[] l1, int[] l2, int[] expected)
         {
             var actual = _problems.MergeTwoLists(l1.Any() ? new LeetCodeProblems.ListNode(l1) : null, l2.Any() ? new LeetCodeProblems.ListNode(l2) : null)?.ToArray() ?? new int[] { };
-            CollectionAssert.AreEqual(expected, actual);
+            CollectionAssert.AreEqual(expected, actual, "Expected: [{0}] but was: [{1}].", string.Join(",", expected), string.Join(",", actual));
         }
 
         //[TestCase(1, new string[] { "()" })]
