@@ -442,14 +442,15 @@ namespace Tests
             CollectionAssert.AreEqual(expected, actual, "Expected: [{0}] but was: [{1}].", string.Join(",", expected), string.Join(",", actual));
         }
 
-        //[TestCase(1, new string[] { "()" })]
-        //[TestCase(2, new string[] { "(())", "()()", })]
-        //[TestCase(3, new string[] { "((()))", "(()())", "(())()", "()(())", "()()()" })]
-        //public void TestGenerateParentheses(int n, string[] expected)
-        //{
-        //    var actual = _problems.GenerateParentheses(n);
-        //    CollectionAssert.AreEquivalent(expected, actual);
-        //}
+        [TestCase(0, new string[] { })]
+        [TestCase(1, new string[] { "()" })]
+        [TestCase(2, new string[] { "(())", "()()", })]
+        [TestCase(3, new string[] { "((()))", "(()())", "(())()", "()(())", "()()()" })]
+        public void TestGenerateParentheses(int n, string[] expected)
+        {
+            var actual = _problems.GenerateParentheses(n);
+            CollectionAssert.AreEquivalent(expected, actual);
+        }
 
         [TestCase("[]", new int[] { })]
         [TestCase("[[]]", new int[] { })]

@@ -883,37 +883,39 @@ namespace CodingProblems
 
         // 22. Generate Parentheses
         // Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.
+        // This solution has a time complexity of O((4^N)/(N^0.5)) where N = n.
+        // This solution has a space complexity of O((4^N)/(N^0.5)) where N = n.
+        // (both the loops solution and the LINQ solution have the same complexity)
         public IList<string> GenerateParentheses(int n)
         {
-            throw new NotImplementedException();
-            //var result = new List<string>();
+            return n > 0 ? GenerateParenthesesLINQ(n).ToArray() : new string[] { };
+        }
 
-            //if (n == 0)
-            //{
-            //    result.Add("");
-            //}
-            //else
-            //{
-            //    for (int i = 0; i < n; i++)
-            //    {
-            //        foreach (var open in GenerateParentheses(i))
-            //        {
-            //            foreach (var close in GenerateParentheses(n - i - 1))
-            //            {
-            //                result.Add($"({open}){close}");
-            //            }
-            //        }
-            //    }
-            //}
+        private IEnumerable<string> GenerateParenthesesLINQ(int n)
+        {
+            return n == 0
+                ? new string[] { "" }
+                : Enumerable.Range(0, n).SelectMany(i => GenerateParenthesesLINQ(i).SelectMany(open => GenerateParenthesesLINQ(n - i - 1).Select(close => $"({open}){close}")));
+        }
 
-            //return result;
+        private IList<string> GenerateParenthesesLoops(int n)
+        {
+            var result = new List<string>();
+            if (n == 0)
+                result.Add("");
+            else
+                for (int i = 0; i < n; i++)
+                    foreach (var open in GenerateParenthesesLoops(i))
+                        foreach (var close in GenerateParenthesesLoops(n - i - 1))
+                            result.Add($"({open}){close}");
+            return result;
         }
 
         // 23. Merge k Sorted Lists
         // You are given an array of k linked-lists lists, each linked-list is sorted in ascending order.
         // Merge all the linked-lists into one sorted linked-list and return it.
         // This solution has a time complexity of O(N*L*log(N)) where N = the number of lists in lists and L = the length of the longest list in lists.
-        // This solution has a space complexity of ???
+        // This solution has a space complexity of O(N*L*log(N)) where N = the number of lists in lists and L = the length of the longest list in lists.
         public ListNode MergeKLists(ListNode[] lists)
         {
             if (lists.Length == 0)
