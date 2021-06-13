@@ -24,6 +24,13 @@
   <ItemGroup>
     <Compile Include="test_leet_code.py" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CodingProblemsPython\ProblemsPython.pyproj">
+      <Name>ProblemsPython</Name>
+      <Project>{eda06805-7cc4-4aa6-8a61-0891fd30aa22}</Project>
+      <Private>True</Private>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
        Visual Studio and specify your pre- and post-build commands in

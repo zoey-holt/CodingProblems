@@ -4,3 +4,4 @@
 packages/*
 .idea/*
 TestResults/*
+*/__pycache__/*
