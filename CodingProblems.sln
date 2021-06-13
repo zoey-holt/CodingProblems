@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodingProblemsCSharp", "CodingProblems\CodingProblemsCSharp.csproj", "{F61E9951-C909-4647-A1C4-28982A34A4A3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProblemsCSharp", "CodingProblems\ProblemsCSharp.csproj", "{F61E9951-C909-4647-A1C4-28982A34A4A3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{8DC81734-424C-48D0-974F-5E3AD9201C07}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestsCSharp", "Tests\TestsCSharp.csproj", "{8DC81734-424C-48D0-974F-5E3AD9201C07}"
 EndProject
-Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "CodingProblemsPython", "CodingProblemsPython\CodingProblemsPython.pyproj", "{EDA06805-7CC4-4AA6-8A61-0891FD30AA22}"
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ProblemsPython", "CodingProblemsPython\ProblemsPython.pyproj", "{EDA06805-7CC4-4AA6-8A61-0891FD30AA22}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "TestsPython", "TestsPython\TestsPython.pyproj", "{8180AA99-E70D-4A99-BD34-AF70B58C7A42}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,6 +27,8 @@ Global
 		{8DC81734-424C-48D0-974F-5E3AD9201C07}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EDA06805-7CC4-4AA6-8A61-0891FD30AA22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EDA06805-7CC4-4AA6-8A61-0891FD30AA22}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8180AA99-E70D-4A99-BD34-AF70B58C7A42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8180AA99-E70D-4A99-BD34-AF70B58C7A42}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

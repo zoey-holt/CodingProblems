@@ -48,16 +48,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LeedCodeTests.cs" />
+    <Compile Include="LeetCodeTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CodingProblems\CodingProblemsCSharp.csproj">
+    <ProjectReference Include="..\CodingProblems\ProblemsCSharp.csproj">
       <Project>{f61e9951-c909-4647-a1c4-28982a34a4a3}</Project>
-      <Name>CodingProblemsCSharp</Name>
+      <Name>ProblemsCSharp</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

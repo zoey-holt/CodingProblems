@@ -2,15 +2,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>eda06805-7cc4-4aa6-8a61-0891fd30aa22</ProjectGuid>
+    <ProjectGuid>8180aa99-e70d-4a99-bd34-af70b58c7a42</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>LeetCodeProblems.py</StartupFile>
+    <StartupFile>test_leet_code.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>CodingProblemsPython</Name>
-    <RootNamespace>CodingProblemsPython</RootNamespace>
+    <Name>TestsPython</Name>
+    <RootNamespace>TestsPython</RootNamespace>
+    <TestFramework>Pytest</TestFramework>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,7 +22,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="LeetCodeProblems.py" />
+    <Compile Include="test_leet_code.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

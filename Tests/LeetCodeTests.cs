@@ -6,7 +6,7 @@ using System.Linq;
 namespace Tests
 {
     [TestFixture]
-    public class LeedCodeTests
+    public class LeetCodeTests
     {
         private LeetCodeProblems _problems = new LeetCodeProblems();
 
