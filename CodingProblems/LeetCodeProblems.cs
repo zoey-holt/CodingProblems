@@ -60,8 +60,7 @@ namespace CodingProblems
                 var node = start;
                 for (int i = 0; i < values.Length; i++)
                 {
-                    int val = values[i];
-                    node.val = val;
+                    node.val = values[i];
                     if (i < values.Length - 1)
                     {
                         node.next = new ListNode();

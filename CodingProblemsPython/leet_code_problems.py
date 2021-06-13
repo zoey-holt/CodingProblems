@@ -16,7 +16,53 @@ def two_sum(nums: List[int], target: int) -> List[int]:
             d[n] = i
     return []
 
+# 2. Add Two Numbers
+# You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order, and each of their nodes contains a single digit. Add the two numbers and return the sum as a linked list.
+# You may assume the two numbers do not contain any leading zero, except the number 0 itself.
 class ListNode:
-    def __init__(self, val=0, next=None):
-        self.val = val
-        self.next = next
+    def __init__(self, val=0, next=None, values=None):
+        if values:
+            start = ListNode()
+            node = start
+            for i, v in enumerate(values):
+                node.val = v
+                if i == len(values) - 1:
+                    break
+                node.next = ListNode()
+                node = node.next
+            self.val = start.val
+            self.next = start.next
+        else:
+            self.val = val
+            self.next = next
+
+    def to_array(self):
+        result = []
+        node = self
+        while True:
+            result.append(node.val)
+            node = node.next
+            if node is None:
+                return result
+
+def add_two_numbers(l1: ListNode, l2: ListNode) -> ListNode:
+    head = ListNode()
+    a = l1
+    b = l2
+    c = head
+    carry = False
+    while a or b or carry:
+        sum = (a.val if a else 0) + (b.val if b else 0)
+        if carry:
+            sum += 1
+            carry = False
+        if sum > 9:
+            carry = True
+            sum -= 10
+        c.val = sum
+        a = a.next if a else None
+        b = b.next if b else None
+        if a or b or carry:
+            c.next = ListNode()
+            c = c.next
+    return head
