@@ -66,3 +66,25 @@ def add_two_numbers(l1: ListNode, l2: ListNode) -> ListNode:
             c.next = ListNode()
             c = c.next
     return head
+
+# 3. Longest Substring Without Repeating Characters
+# Given a string s, find the length of the longest substring without repeating characters.
+def length_of_longest_substring(s: str) -> int:
+    longest = 0
+    for i in range(0, len(s)):
+        if i + longest >= len(s):
+            break
+        chars = set()
+        broke = False
+        for j in range(i, len(s)):
+            if s[j] in chars:
+                if j - i > longest:
+                    longest = j - i
+                chars = set()
+                broke = True
+                break
+            else:
+                chars.add(s[j])
+        if not broke and len(s) - i > longest:
+            longest = len(s) - i
+    return longest
