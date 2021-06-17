@@ -88,3 +88,28 @@ def length_of_longest_substring(s: str) -> int:
         if not broke and len(s) - i > longest:
             longest = len(s) - i
     return longest
+
+# 94. Binary Tree Inorder Traversal
+# Given the root of a binary tree, return the inorder traversal of its nodes' values.
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+    def from_level_order_array(array: List[int]) -> TreeNode:
+        if not array:
+            return null
+        root = TreeNode(array[0])
+        return root
+
+def inorder_traversal(root: TreeNode) -> List[int]:
+    list = []
+    if root:
+        list.extend(inorder_traversal(root.left))
+        list.append(root.val)
+        list.extend(inorder_traversal(root.right))
+    return list
+
+def inorder_traversal_iterative(root: TreeNode) -> List[int]:
+    pass
