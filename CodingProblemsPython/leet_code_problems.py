@@ -97,10 +97,25 @@ class TreeNode:
         self.left = left
         self.right = right
 
-    def from_level_order_array(array: List[int]) -> TreeNode:
+    def from_level_order_array(array: List[int]):
         if not array:
-            return null
+            return None
         root = TreeNode(array[0])
+        branches = [root]
+        left = True
+        for value in array[1:]:
+            if left:
+                if value is not None:
+                    node = TreeNode(value)
+                    branches[0].left = node
+                    branches.append(node)
+            else:
+                branch = branches.pop(0)
+                if value is not None:
+                    node = TreeNode(value)
+                    branch.right = node
+                    branches.append(node)
+            left = not left
         return root
 
 def inorder_traversal(root: TreeNode) -> List[int]:
@@ -111,5 +126,37 @@ def inorder_traversal(root: TreeNode) -> List[int]:
         list.extend(inorder_traversal(root.right))
     return list
 
+# Follow up: Recursive solution is trivial, could you do it iteratively?
 def inorder_traversal_iterative(root: TreeNode) -> List[int]:
+    list = []
+    stack = []
+    current = root
+    while True:
+        if current:
+            stack.append(current)
+            current = current.left
+        else:
+            if not stack:
+                break
+            current = stack.pop()
+            list.append(current.val)
+            current = current.right
+    return list
+            
+# 98. Validate Binary Search Tree
+# Given the root of a binary tree, determine if it is a valid binary search tree (BST).
+# A valid BST is defined as follows:
+# The left subtree of a node contains only nodes with keys less than the node's key.
+# The right subtree of a node contains only nodes with keys greater than the node's key.
+# Both the left and right subtrees must also be binary search trees.
+# Example 1:
+# Input: root = [2,1,3]
+# Output: true
+# Input: root = [5,1,4,null,null,3,6]
+# Output: false
+# Explanation: The root node's value is 5 but its right child's value is 4.
+# Constraints:
+# The number of nodes in the tree is in the range [1, 104].
+# -231 <= Node.val <= 231 - 1
+def is_valid_bst(self, root: TreeNode) -> bool:
     pass

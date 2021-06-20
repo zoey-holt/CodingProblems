@@ -28,3 +28,11 @@ def test_inorder_traversal():
     assert problems.inorder_traversal(problems.TreeNode.from_level_order_array([1,2])) == [2,1]
     assert problems.inorder_traversal(problems.TreeNode.from_level_order_array([1,None,2])) == [1,2]
     assert problems.inorder_traversal(problems.TreeNode.from_level_order_array([1,2,3,4,5,6,7])) == [4,2,5,1,6,3,7]
+
+def test_inorder_traversal_iterative():
+    assert problems.inorder_traversal_iterative(problems.TreeNode.from_level_order_array([1,None,2,3])) == [1,3,2]
+    assert problems.inorder_traversal_iterative(problems.TreeNode.from_level_order_array([])) == []
+    assert problems.inorder_traversal_iterative(problems.TreeNode.from_level_order_array([1])) == [1]
+    assert problems.inorder_traversal_iterative(problems.TreeNode.from_level_order_array([1,2])) == [2,1]
+    assert problems.inorder_traversal_iterative(problems.TreeNode.from_level_order_array([1,None,2])) == [1,2]
+    assert problems.inorder_traversal_iterative(problems.TreeNode.from_level_order_array([1,2,3,4,5,6,7])) == [4,2,5,1,6,3,7]
