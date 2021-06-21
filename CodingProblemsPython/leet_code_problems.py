@@ -158,5 +158,28 @@ def inorder_traversal_iterative(root: TreeNode) -> List[int]:
 # Constraints:
 # The number of nodes in the tree is in the range [1, 104].
 # -231 <= Node.val <= 231 - 1
-def is_valid_bst(self, root: TreeNode) -> bool:
+def is_valid_bst(root: TreeNode) -> bool:
     pass
+
+# 102. Binary Tree Level Order Traversal
+# Given the root of a binary tree, return the level order traversal of its nodes' values. (i.e., from left to right, level by level).
+def level_order(root: TreeNode) -> List[List[int]]:
+    if not root:
+        return []
+    result = []
+    next_level = []
+    current_level = [root]
+    start = True
+    while current_level:
+        start = False
+        result_current_level = []
+        for node in current_level:
+            result_current_level.append(node.val)
+            if node.left:
+                next_level.append(node.left)
+            if node.right:
+                next_level.append(node.right)
+        result.append(result_current_level)
+        current_level = next_level;
+        next_level = []
+    return result
