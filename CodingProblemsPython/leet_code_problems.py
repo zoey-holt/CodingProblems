@@ -167,19 +167,12 @@ def level_order(root: TreeNode) -> List[List[int]]:
     if not root:
         return []
     result = []
-    next_level = []
     current_level = [root]
-    start = True
     while current_level:
-        start = False
-        result_current_level = []
-        for node in current_level:
-            result_current_level.append(node.val)
-            if node.left:
-                next_level.append(node.left)
-            if node.right:
-                next_level.append(node.right)
-        result.append(result_current_level)
-        current_level = next_level;
+        result.append([n.val for n in current_level])
         next_level = []
+        for n in current_level:
+            if n.left:  next_level.append(n.left)
+            if n.right: next_level.append(n.right)
+        current_level = next_level
     return result

@@ -41,3 +41,4 @@ def test_level_order():
     assert problems.level_order(problems.TreeNode.from_level_order_array([3,9,20,None,None,15,7])) == [[3],[9,20],[15,7]]
     assert problems.level_order(problems.TreeNode.from_level_order_array([1])) == [[1]]
     assert problems.level_order(problems.TreeNode.from_level_order_array([])) == []
+    assert problems.level_order(problems.TreeNode.from_level_order_array([-9,-3,2,None,4,4,0,-6,None,-5])) == [[-9],[-3,2],[4,4,0],[-6,-5]]
