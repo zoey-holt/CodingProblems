@@ -37,6 +37,15 @@ def test_inorder_traversal_iterative():
     assert problems.inorder_traversal_iterative(problems.TreeNode.from_level_order_array([1,None,2])) == [1,2]
     assert problems.inorder_traversal_iterative(problems.TreeNode.from_level_order_array([1,2,3,4,5,6,7])) == [4,2,5,1,6,3,7]
 
+def test_is_valid_bst():
+    assert problems.is_valid_bst(problems.TreeNode.from_level_order_array([2,1,3])) == True
+    assert problems.is_valid_bst(problems.TreeNode.from_level_order_array([5,1,4,None,None,3,6])) == False
+    assert problems.is_valid_bst(problems.TreeNode.from_level_order_array([])) == True
+    assert problems.is_valid_bst(problems.TreeNode.from_level_order_array([1])) == True
+    assert problems.is_valid_bst(problems.TreeNode.from_level_order_array([2,2,2])) == False
+    assert problems.is_valid_bst(problems.TreeNode.from_level_order_array([5,4,6,None,None,3,7])) == False
+    assert problems.is_valid_bst(problems.TreeNode.from_level_order_array([3,1,5,0,2,4,6])) == True
+
 def test_level_order():
     assert problems.level_order(problems.TreeNode.from_level_order_array([3,9,20,None,None,15,7])) == [[3],[9,20],[15,7]]
     assert problems.level_order(problems.TreeNode.from_level_order_array([1])) == [[1]]

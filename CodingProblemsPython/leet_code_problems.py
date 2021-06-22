@@ -145,21 +145,17 @@ def inorder_traversal_iterative(root: TreeNode) -> List[int]:
             
 # 98. Validate Binary Search Tree
 # Given the root of a binary tree, determine if it is a valid binary search tree (BST).
-# A valid BST is defined as follows:
-# The left subtree of a node contains only nodes with keys less than the node's key.
-# The right subtree of a node contains only nodes with keys greater than the node's key.
-# Both the left and right subtrees must also be binary search trees.
-# Example 1:
-# Input: root = [2,1,3]
-# Output: true
-# Input: root = [5,1,4,null,null,3,6]
-# Output: false
-# Explanation: The root node's value is 5 but its right child's value is 4.
-# Constraints:
-# The number of nodes in the tree is in the range [1, 104].
-# -231 <= Node.val <= 231 - 1
 def is_valid_bst(root: TreeNode) -> bool:
-    pass
+    if not root:
+        return True
+    return is_valid_bst_subtree(root.left, None, root.val) and is_valid_bst_subtree(root.right, root.val, None)
+
+def is_valid_bst_subtree(root: TreeNode, min: int, max: int) -> bool:
+    if not root:
+        return True
+    if (max is not None and root.val >= max) or (min is not None and root.val <= min):
+        return False
+    return is_valid_bst_subtree(root.left, min, root.val) and is_valid_bst_subtree(root.right, root.val, max)
 
 # 102. Binary Tree Level Order Traversal
 # Given the root of a binary tree, return the level order traversal of its nodes' values. (i.e., from left to right, level by level).
