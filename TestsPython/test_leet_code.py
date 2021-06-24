@@ -46,8 +46,14 @@ def test_is_valid_bst():
     assert problems.is_valid_bst(problems.TreeNode.from_level_order_array([5,4,6,None,None,3,7])) == False
     assert problems.is_valid_bst(problems.TreeNode.from_level_order_array([3,1,5,0,2,4,6])) == True
 
-def test_level_order():
-    assert problems.level_order(problems.TreeNode.from_level_order_array([3,9,20,None,None,15,7])) == [[3],[9,20],[15,7]]
-    assert problems.level_order(problems.TreeNode.from_level_order_array([1])) == [[1]]
-    assert problems.level_order(problems.TreeNode.from_level_order_array([])) == []
-    assert problems.level_order(problems.TreeNode.from_level_order_array([-9,-3,2,None,4,4,0,-6,None,-5])) == [[-9],[-3,2],[4,4,0],[-6,-5]]
+def test_binary_tree_level_order():
+    assert problems.binary_tree_level_order(problems.TreeNode.from_level_order_array([3,9,20,None,None,15,7])) == [[3],[9,20],[15,7]]
+    assert problems.binary_tree_level_order(problems.TreeNode.from_level_order_array([1])) == [[1]]
+    assert problems.binary_tree_level_order(problems.TreeNode.from_level_order_array([])) == []
+    assert problems.binary_tree_level_order(problems.TreeNode.from_level_order_array([-9,-3,2,None,4,4,0,-6,None,-5])) == [[-9],[-3,2],[4,4,0],[-6,-5]]
+
+def test_nary_tree_level_order():
+    assert problems.nary_tree_level_order(problems.Node.from_level_order_array([])) == []
+    assert problems.nary_tree_level_order(problems.Node.from_level_order_array([1])) == [[1]]
+    assert problems.nary_tree_level_order(problems.Node.from_level_order_array([1,None,3,2,4,None,5,6])) == [[1],[3,2,4],[5,6]]
+    assert problems.nary_tree_level_order(problems.Node.from_level_order_array([1,None,2,3,4,5,None,None,6,7,None,8,None,9,10,None,None,11,None,12,None,13,None,None,14])) == [[1],[2,3,4,5],[6,7,8,9,10],[11,12,13],[14]]

@@ -1,4 +1,5 @@
 from typing import List
+import itertools
 
 # 1. Two Sum
 # Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
@@ -159,7 +160,7 @@ def is_valid_bst_subtree(root: TreeNode, min: int, max: int) -> bool:
 
 # 102. Binary Tree Level Order Traversal
 # Given the root of a binary tree, return the level order traversal of its nodes' values. (i.e., from left to right, level by level).
-def level_order(root: TreeNode) -> List[List[int]]:
+def binary_tree_level_order(root: TreeNode) -> List[List[int]]:
     if not root:
         return []
     result = []
@@ -167,8 +168,81 @@ def level_order(root: TreeNode) -> List[List[int]]:
     while current_level:
         result.append([n.val for n in current_level])
         next_level = []
-        for n in current_level:
-            if n.left:  next_level.append(n.left)
-            if n.right: next_level.append(n.right)
+        for node in current_level:
+            if node.left:  next_level.append(node.left)
+            if node.right: next_level.append(node.right)
+        current_level = next_level
+    return result
+
+# 124. Binary Tree Maximum Path Sum
+# A path in a binary tree is a sequence of nodes where each pair of adjacent nodes in the sequence has an edge connecting them. A node can only appear in the sequence at most once. Note that the path does not need to pass through the root.
+# The path sum of a path is the sum of the node's values in the path.
+# Given the root of a binary tree, return the maximum path sum of any path.
+# Example 1:
+# Input: root = [1,2,3]
+# Output: 6
+# Explanation: The optimal path is 2 -> 1 -> 3 with a path sum of 2 + 1 + 3 = 6.
+# Example 2:
+# Input: root = [-10,9,20,None,None,15,7]
+# Output: 42
+# Explanation: The optimal path is 15 -> 20 -> 7 with a path sum of 15 + 20 + 7 = 42.
+# Constraints:
+# The number of nodes in the tree is in the range [1, 3 * 104].
+# -1000 <= Node.val <= 1000
+def max_path_sum(self, root: TreeNode) -> int:
+    pass
+
+# 297. Serialize and Deserialize Binary Tree
+# Serialization is the process of converting a data structure or object into a sequence of bits so that it can be stored in a file or memory buffer, or transmitted across a network connection link to be reconstructed later in the same or another computer environment.
+# Design an algorithm to serialize and deserialize a binary tree. There is no restriction on how your serialization/deserialization algorithm should work. You just need to ensure that a binary tree can be serialized to a string and this string can be deserialized to the original tree structure.
+# Clarification: The input/output format is the same as how LeetCode serializes a binary tree. You do not necessarily need to follow this format, so please be creative and come up with different approaches yourself.
+# Input: root = [1,2,3,None,None,4,5]
+# Output: [1,2,3,None,None,4,5]
+# Input: root = []
+# Output: []
+# Input: root = [1]
+# Output: [1]
+# Input: root = [1,2]
+# Output: [1,2]
+# The number of nodes in the tree is in the range [0, 104].
+# -1000 <= Node.val <= 1000
+def serialize_binary_tree(root: TreeNode) -> str:
+    pass        
+
+def deserialize_binary_tree(data: str) -> TreeNode:
+    pass
+
+# 429. N-ary Tree Level Order Traversal
+# Given an n-ary tree, return the level order traversal of its nodes' values.
+class Node:
+    def __init__(self, val=None, children=None):
+        self.val = val
+        self.children = children or []
+        
+    # Nary-Tree input serialization is represented in their level order traversal, each group of children is separated by the null value.
+    def from_level_order_array(array: List[int]):
+        if not array:
+            return None
+        root = Node(array[0])
+        branches = [root]
+        for value in array[2:]:
+            if value is not None:
+                node = Node(value)
+                branches[0].children.append(node)
+                branches.append(node)
+            else:
+                branches.pop(0)
+        return root
+
+def nary_tree_level_order(root: Node) -> List[List[int]]:
+    if not root:
+        return []
+    result = []
+    current_level = [root]
+    while current_level:
+        result.append([n.val for n in current_level])
+        next_level = []
+        for node in current_level:
+            next_level += node.children
         current_level = next_level
     return result
