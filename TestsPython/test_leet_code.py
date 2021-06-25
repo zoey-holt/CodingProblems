@@ -21,6 +21,13 @@ def test_length_of_longest_substring():
     assert problems.length_of_longest_substring("au") == 2
     assert problems.length_of_longest_substring("dvdf") == 3
 
+def test_find_median_sorted_arrays():
+    assert problems.find_median_sorted_arrays([1,3], [2]) == 2
+    assert problems.find_median_sorted_arrays([1,2], [3,4]) == 2.5
+    assert problems.find_median_sorted_arrays([0,0], [0,0]) == 0
+    assert problems.find_median_sorted_arrays([], [1]) == 1
+    assert problems.find_median_sorted_arrays([2], []) == 2
+
 def test_inorder_traversal():
     assert problems.inorder_traversal(problems.TreeNode.from_level_order_array([1,None,2,3])) == [1,3,2]
     assert problems.inorder_traversal(problems.TreeNode.from_level_order_array([])) == []

@@ -90,6 +90,36 @@ def length_of_longest_substring(s: str) -> int:
             longest = len(s) - i
     return longest
 
+# 4. Median of Two Sorted Arrays
+# Given two sorted arrays nums1 and nums2 of size m and n respectively, return the median of the two sorted arrays.
+# The overall run time complexity should be O(log(M + N)).
+def find_median_sorted_arrays(nums1: List[int], nums2: List[int]) -> float:
+    if not nums1 and not nums2:
+        return 0
+    medians = []
+    i1, i2 = 0, 0
+    length = len(nums1) + len(nums2)
+    half = int(length / 2)
+    median_indicies = [half - 1, half] if length % 2 == 0 else [half]
+    while i1 + i2 <= median_indicies[-1]:
+        if i2 >= len(nums2):
+            val = nums1[i1]
+            i1 += 1
+        elif i1 >= len(nums1):
+            val = nums2[i2]
+            i2 += 1
+        elif nums1[i1] <= nums2[i2]:
+            val = nums1[i1]
+            i1 += 1
+        else:
+            val = nums2[i2]
+            i2 += 1
+
+        if i1 + i2 - 1 in median_indicies:
+            medians.append(val)
+
+    return sum(medians) / len(medians)
+
 # 94. Binary Tree Inorder Traversal
 # Given the root of a binary tree, return the inorder traversal of its nodes' values.
 class TreeNode:
