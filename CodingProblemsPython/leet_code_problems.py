@@ -1,5 +1,6 @@
 from typing import List
 import itertools
+import sys
 
 # 1. Two Sum
 # Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
@@ -94,31 +95,24 @@ def length_of_longest_substring(s: str) -> int:
 # Given two sorted arrays nums1 and nums2 of size m and n respectively, return the median of the two sorted arrays.
 # The overall run time complexity should be O(log(M + N)).
 def find_median_sorted_arrays(nums1: List[int], nums2: List[int]) -> float:
-    if not nums1 and not nums2:
-        return 0
-    medians = []
-    i1, i2 = 0, 0
-    length = len(nums1) + len(nums2)
-    half = int(length / 2)
-    median_indicies = [half - 1, half] if length % 2 == 0 else [half]
-    while i1 + i2 <= median_indicies[-1]:
-        if i2 >= len(nums2):
-            val = nums1[i1]
-            i1 += 1
-        elif i1 >= len(nums1):
-            val = nums2[i2]
-            i2 += 1
-        elif nums1[i1] <= nums2[i2]:
-            val = nums1[i1]
-            i1 += 1
-        else:
-            val = nums2[i2]
-            i2 += 1
-
-        if i1 + i2 - 1 in median_indicies:
-            medians.append(val)
-
-    return sum(medians) / len(medians)
+    if len(nums2) < len(nums1): # ensure nums2 is always the larger array
+        throw_away = nums1
+        nums1 = nums2
+        nums2 = throw_away
+    lo = 0
+    hi = len(nums1)
+    while lo <= hi:
+        part1 = int((lo + hi) / 2)
+        part2 = int((len(nums1) + len(nums2) + 1) / 2) - part1
+        nums1_lmax = -sys.maxsize if part1 == 0 else nums1[part1 - 1]
+        nums1_rmin = sys.maxsize if part1 == len(nums1) else nums1[part1]
+        nums2_lmax = -sys.maxsize if part2 == 0 else nums2[part2 - 1]
+        nums2_rmin = sys.maxsize if part2 == len(nums2) else nums2[part2]
+        if nums1_lmax <= nums2_rmin and nums2_lmax <= nums1_rmin:
+            return (max(nums1_lmax, nums2_lmax) + min(nums1_rmin, nums2_rmin)) / 2 if (len(nums1) + len(nums2)) % 2 == 0 else max(nums1_lmax, nums2_lmax)
+        elif nums1_lmax > nums2_rmin:   hi = part1 - 1
+        else:   lo = part1 + 1
+    return 0
 
 # 94. Binary Tree Inorder Traversal
 # Given the root of a binary tree, return the inorder traversal of its nodes' values.

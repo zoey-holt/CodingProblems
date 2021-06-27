@@ -146,6 +146,9 @@ namespace CodingProblems
         // 4. Median of Two Sorted Arrays
         // Given two sorted arrays nums1 and nums2 of size m and n respectively, return the median of the two sorted arrays.
         // The overall run time complexity should be O(log (m+n)).
+        // This solution has a time complexity of O(M + N) where M = the length of nums1 and N = the length of nums2. 
+        // This solution has a space complexity of O(M + N) where N = the length of nums1 and N = the length of nums2.
+        // TODO: Rewrite so time complexity is O(log(M + N)).
         public double FindMedianSortedArrays(int[] nums1, int[] nums2)
         {
             var sum = new int[nums1.Length + nums2.Length];

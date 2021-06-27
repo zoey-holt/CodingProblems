@@ -27,6 +27,10 @@ def test_find_median_sorted_arrays():
     assert problems.find_median_sorted_arrays([0,0], [0,0]) == 0
     assert problems.find_median_sorted_arrays([], [1]) == 1
     assert problems.find_median_sorted_arrays([2], []) == 2
+    assert problems.find_median_sorted_arrays([], [1,2,3,4,5]) == 3
+    assert problems.find_median_sorted_arrays([100000], [100001]) == 100000.5
+    assert problems.find_median_sorted_arrays([4], [1,2,3,5,6]) == 3.5
+    assert problems.find_median_sorted_arrays([], []) == 0
 
 def test_inorder_traversal():
     assert problems.inorder_traversal(problems.TreeNode.from_level_order_array([1,None,2,3])) == [1,3,2]
