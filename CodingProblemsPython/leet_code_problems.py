@@ -270,3 +270,67 @@ def nary_tree_level_order(root: Node) -> List[List[int]]:
             next_level += node.children
         current_level = next_level
     return result
+
+# 1004. Max Consecutive Ones III
+# Given a binary array nums and an integer k, return the maximum number of consecutive 1's in the array if you can flip at most k 0's.
+def longest_ones(nums: List[int], k: int) -> int:
+    longest = 0
+    group_indicies = get_one_group_indicies(nums)
+    lens = []
+    for i, group in enumerate(group_indicies):
+        a = longest_one_sliding_window(group_indicies, group, i, k, len(nums))
+        lens.append(a)
+        longest = max(longest, a)
+    return longest
+
+def get_one_group_indicies(nums: List[int]) -> List[int]:
+    group_indicies = []
+    in_one_group = False
+    one_group = []
+    for i, n in enumerate(nums):
+        if not in_one_group and n == 1:
+            one_group.append(i)
+            in_one_group = True
+        if in_one_group and n == 0:
+            one_group.append(i)
+            group_indicies.append(one_group)
+            in_one_group = False
+            one_group = []
+    if one_group:
+        one_group.append(len(nums))
+        group_indicies.append(one_group)
+    return group_indicies
+
+def longest_one_sliding_window(grp_idxs: List[int], curr_grp: List[int], i: int, k: int, max_len: int) -> int:
+    len_curr = curr_grp[1] - curr_grp[0]
+    len_prev, dis_prev, len_next, dis_next = 0, 0, 0, 0
+    prev_grp, next_grp = None, None
+    if i > 0:
+        prev_grp = grp_idxs[i-1]
+        len_prev = prev_grp[1] - prev_grp[0]
+        dis_prev = curr_grp[0] - prev_grp[1]
+    if i < len(grp_idxs) - 1:
+        next_grp = grp_idxs[i+1]
+        len_next = next_grp[1] - next_grp[0]
+        dis_next = next_grp[0] - curr_grp[1]
+
+    if next_grp and dis_next <= k and (not prev_grp or len_next - dis_next > len_prev - dis_prev):
+        new_len = len_curr + len_next + dis_next
+        k -= dis_next
+        new_grp = [curr_grp[0], next_grp[1]]
+        new_grp_idxs = [gi for j, gi in enumerate(grp_idxs) if j != i + 1]
+        new_i = i
+    elif prev_grp and dis_prev <= k:
+        new_len = len_curr + len_prev + dis_prev
+        k -= dis_prev
+        new_grp = [prev_grp[0], curr_grp[1]]
+        new_grp_idxs = [gi for j, gi in enumerate(grp_idxs) if j != i - 1]
+        new_i = i - 1
+    else:
+        new_len = min(len_curr + k, max_len)
+        k = 0
+        new_grp_idxs = []
+
+    if k > 0 and new_grp_idxs:
+        return longest_one_sliding_window(new_grp_idxs, new_grp, new_i, k, max_len)
+    return new_len
