@@ -114,6 +114,20 @@ def find_median_sorted_arrays(nums1: List[int], nums2: List[int]) -> float:
         else:   lo = part1 + 1
     return 0
 
+# 26. Remove Duplicates from Sorted Array
+# Given an integer array nums sorted in non-decreasing order, remove the duplicates in-place such that each unique element appears only once. The relative order of the elements should be kept the same.
+# Since it is impossible to change the length of the array in some languages, you must instead have the result be placed in the first part of the array nums. More formally, if there are k elements after removing the duplicates, then the first k elements of nums should hold the final result. It does not matter what you leave beyond the first k elements.
+# Return k after placing the final result in the first k slots of nums.
+# Do not allocate extra space for another array. You must do this by modifying the input array in-place with O(1) extra memory.
+def remove_duplicates(nums: List[int]) -> int:
+    if not nums: return 0
+    k = 1
+    for i, n in enumerate(nums):
+        if i == 0 or n == nums[i-1]: continue
+        nums[k] = n
+        k += 1
+    return k
+
 # 94. Binary Tree Inorder Traversal
 # Given the root of a binary tree, return the inorder traversal of its nodes' values.
 class TreeNode:
@@ -273,6 +287,7 @@ def nary_tree_level_order(root: Node) -> List[List[int]]:
 
 # 1004. Max Consecutive Ones III
 # Given a binary array nums and an integer k, return the maximum number of consecutive 1's in the array if you can flip at most k 0's.
+# TODO: This is still not quite a correct answer.
 def longest_ones(nums: List[int], k: int) -> int:
     longest = 0
     group_indicies = get_one_group_indicies(nums)
