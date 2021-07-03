@@ -128,6 +128,37 @@ def remove_duplicates(nums: List[int]) -> int:
         k += 1
     return k
 
+# 36. Valid Sudoku
+# Determine if a 9 x 9 Sudoku board is valid. Only the filled cells need to be validated according to the following rules:
+# Each row must contain the digits 1-9 without repetition.
+# Each column must contain the digits 1-9 without repetition.
+# Each of the nine 3 x 3 sub-boxes of the grid must contain the digits 1-9 without repetition.
+# A Sudoku board (partially filled) could be valid but is not necessarily solvable.
+# Only the filled cells need to be validated according to the mentioned rules.
+def is_valid_sudoku(board: List[List[str]]) -> bool:
+    for row in board:
+        if not is_valid_sudoku_section(row):
+            return False
+
+    for col in zip(*board):
+        if not is_valid_sudoku_section(col):
+            return False
+
+    boxes = [[],[],[],[],[],[],[],[],[]]
+    for i, row in enumerate(board):
+        boxes[int(i/3)] += [row[0],row[1],row[2]]
+        boxes[int(i/3)+3] += [row[3],row[4],row[5]]
+        boxes[int(i/3)+6] += [row[6],row[7],row[8]]
+    for box in boxes:
+        if not is_valid_sudoku_section(box):
+            return False
+
+    return True
+
+def is_valid_sudoku_section(section: List[str]) -> bool:
+    checked = {n for n in section if n != '.'}
+    return len(checked) == len([n for n in section if n != '.'])
+
 # 94. Binary Tree Inorder Traversal
 # Given the root of a binary tree, return the inorder traversal of its nodes' values.
 class TreeNode:
