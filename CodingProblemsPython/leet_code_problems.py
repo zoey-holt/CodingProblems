@@ -303,6 +303,7 @@ class Node:
     def __init__(self, val=None, children=None):
         self.val = val
         self.children = children or []
+        self.seen = False
         
     # Nary-Tree input serialization is represented in their level order traversal, each group of children is separated by the null value.
     def from_level_order_array(array: List[int]):
