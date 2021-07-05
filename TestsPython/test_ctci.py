@@ -37,3 +37,12 @@ def test_to_minimal_bst():
     assert problems.to_minimal_bst([1,2,3,4,5]).to_level_order_array() == [3,2,5,1,None,4,None]
     assert problems.to_minimal_bst([1,2,3,4,5,6,7,8,9,10]).to_level_order_array() == [6,3,9,2,5,8,10,1,None,4,None,7,None]
     assert problems.to_minimal_bst([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]).to_level_order_array() == [8,4,12,2,6,10,14,1,3,5,7,9,11,13,15]
+
+def test_check_balanced():
+    assert problems.check_balanced(TreeNode.from_level_order_array([])) == True
+    assert problems.check_balanced(TreeNode.from_level_order_array([1])) == True
+    assert problems.check_balanced(TreeNode.from_level_order_array([3,9,20,None,None,15,7])) == True
+    assert problems.check_balanced(TreeNode.from_level_order_array([1,2,2,3,3,None,None,4,4])) == False
+    assert problems.check_balanced(TreeNode.from_level_order_array([1,2,3,4,5,6,None,8])) == True
+    assert problems.check_balanced(TreeNode.from_level_order_array([1,None,2,None,3])) == False
+    assert problems.check_balanced(TreeNode.from_level_order_array([1,2,2,3,None,None,3,4,None,None,4])) == False

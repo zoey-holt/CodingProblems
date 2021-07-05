@@ -1,5 +1,6 @@
 from typing import List
 from leet_code_problems import TreeNode, Node
+import math
 
 # 4.1 Route Between Nodes
 # Given a directed graph from two nodes (S and E), design an algorithm to find out whether there is a route from S to E.
@@ -43,3 +44,21 @@ def to_minimal_bst(nums: List) -> TreeNode:
     root.left = to_minimal_bst(nums[:root_idx])
     root.right = to_minimal_bst(nums[root_idx+1:])
     return root
+
+# 4.4 Check Balanced
+# Implement a function to check if a binary tree is balanced. For the purpose of this question, a balanced tree is defined to be a tree such that the heights of the two subtrees of any node never differ by more than one.
+def check_balanced(root: TreeNode) -> bool:
+    return get_height_balance_check(root) >= 0
+
+def get_height_balance_check(root: TreeNode) -> int:
+    if not root:
+        return 0
+    left_height = get_height_balance_check(root.left)
+    if left_height < 0:
+        return left_height
+    right_height = get_height_balance_check(root.right)
+    if right_height < 0:
+        return right_height
+    if math.fabs(left_height - right_height) > 1:
+        return -1 # signal that subtrees are not balanced
+    return max(left_height, right_height) + 1
