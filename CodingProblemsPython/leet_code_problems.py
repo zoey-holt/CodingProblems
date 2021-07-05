@@ -139,25 +139,26 @@ def is_valid_sudoku(board: List[List[str]]) -> bool:
     for row in board:
         if not is_valid_sudoku_section(row):
             return False
-
     for col in zip(*board):
         if not is_valid_sudoku_section(col):
             return False
-
     boxes = [[],[],[],[],[],[],[],[],[]]
     for i, row in enumerate(board):
-        boxes[int(i/3)] += [row[0],row[1],row[2]]
-        boxes[int(i/3)+3] += [row[3],row[4],row[5]]
-        boxes[int(i/3)+6] += [row[6],row[7],row[8]]
+        for x in range(0, 3):
+            boxes[int(i/3)+(x*3)] += [row[x],row[x+1],row[x+2]]
     for box in boxes:
         if not is_valid_sudoku_section(box):
             return False
-
     return True
 
 def is_valid_sudoku_section(section: List[str]) -> bool:
-    checked = {n for n in section if n != '.'}
-    return len(checked) == len([n for n in section if n != '.'])
+    checked = []
+    for n in section:
+        if n != '.':
+            if n in checked:
+                return False
+            checked.append(n)
+    return True
 
 # 94. Binary Tree Inorder Traversal
 # Given the root of a binary tree, return the inorder traversal of its nodes' values.
@@ -187,6 +188,21 @@ class TreeNode:
                     branches.append(node)
             left = not left
         return root
+
+    def to_level_order_array(self) -> List[int]:
+        array = []
+        current_level = [self]
+        while current_level:
+            array += [n if n is None else n.val for n in current_level]
+            next_level = []
+            for n in current_level:
+                if n and (n.left or n.right):
+                    if n.left: next_level.append(n.left)
+                    else: next_level.append(None)
+                    if n.right: next_level.append(n.right)
+                    else: next_level.append(None)
+            current_level = next_level
+        return array
 
 def inorder_traversal(root: TreeNode) -> List[int]:
     list = []

@@ -22,6 +22,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="test_ctci.py" />
     <Compile Include="test_leet_code.py" />
   </ItemGroup>
   <ItemGroup>
