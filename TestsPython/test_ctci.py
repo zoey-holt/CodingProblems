@@ -46,3 +46,12 @@ def test_check_balanced():
     assert problems.check_balanced(TreeNode.from_level_order_array([1,2,3,4,5,6,None,8])) == True
     assert problems.check_balanced(TreeNode.from_level_order_array([1,None,2,None,3])) == False
     assert problems.check_balanced(TreeNode.from_level_order_array([1,2,2,3,None,None,3,4,None,None,4])) == False
+
+def test_build_order():
+    assert problems.build_order([], []) == []
+    assert problems.build_order(['a','b','c','d','e','f'], [['a','d'],['f','b'],['b','d'],['f','a'],['d','c']]) in [['e','f','a','b','d','c'],['e','f','b','a','d','c'],['f','e','a','b','d','c'],['f','e','b','a','d','c'],]
+    try: problems.build_order(['a','b'], [['a','b'],['b','a']])
+    except problems.BuildOrderException as e: assert True
+    assert problems.build_order(['a','b','c'], [['b','c'],['a','b']]) == ['a','b','c']
+    assert problems.build_order(['a','b','c'], [['b','c'],['a','b'],['a','c']]) == ['a','b','c']
+    assert problems.build_order(['a','b','c','d'], [['b','c'],['a','b'],['a','c'],['a','d'],['b','d'],['c','d']]) == ['a','b','c','d']
