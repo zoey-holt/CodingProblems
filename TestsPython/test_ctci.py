@@ -55,3 +55,53 @@ def test_build_order():
     assert problems.build_order(['a','b','c'], [['b','c'],['a','b']]) == ['a','b','c']
     assert problems.build_order(['a','b','c'], [['b','c'],['a','b'],['a','c']]) == ['a','b','c']
     assert problems.build_order(['a','b','c','d'], [['b','c'],['a','b'],['a','c'],['a','d'],['b','d'],['c','d']]) == ['a','b','c','d']
+
+def test_first_common_ancestor():
+    node1 = TreeNode()
+    node2 = TreeNode()
+    root = TreeNode(100, node1, node2)
+    expected = root
+    assert problems.first_common_ancestor(root, node1, node2) == expected
+    node1 = TreeNode(1)
+    node2 = TreeNode(2)
+    expected = TreeNode(100, node1, node2)
+    root = TreeNode(0, None, expected)
+    assert problems.first_common_ancestor(root, node1, node2) == expected
+    node1 = TreeNode(1)
+    node2 = TreeNode(2, None, node1)
+    expected = TreeNode(100, None, node2)
+    root = TreeNode(0, None, expected)
+    assert problems.first_common_ancestor(root, node1, node2) == expected
+    node1 = TreeNode()
+    node2 = TreeNode()
+    expected = TreeNode(
+        100, TreeNode(
+            0, node1, 
+            TreeNode()),
+       TreeNode(
+           0, node2, 
+           TreeNode()))
+    root = TreeNode(0, None, expected)
+    assert problems.first_common_ancestor(root, node1, node2) == expected
+    node1 = TreeNode()
+    node2 = TreeNode()
+    expected = TreeNode(
+        100, TreeNode(
+            0, TreeNode(
+                0, TreeNode(
+                    0, TreeNode(
+                        0, TreeNode(), 
+                        TreeNode()), 
+                    node1), 
+                TreeNode()), 
+            TreeNode(
+                0, TreeNode(), 
+                TreeNode())), 
+        TreeNode(
+            0, node2, 
+            TreeNode(
+                0, TreeNode(
+                    0, TreeNode(), 
+                    TreeNode()))))
+    root = TreeNode(0, None, expected)
+    assert problems.first_common_ancestor(root, node1, node2) == expected

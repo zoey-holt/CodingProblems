@@ -76,3 +76,22 @@ def build_order(projects: List[str], dependencies: List[List[str]]) -> List[str]
         next_dependencies = [d for d in dependencies if d[0] not in [i for i in independents]]
         return list(independents) + build_order(list(dependents), next_dependencies)
     return list(independents)
+
+# 4.8 First Common Ancestor
+# Design an algorithm and write code to find the first common ancestor of two nodes in a binary tree. Avoid storing additional nodes in a data structure. 
+# NOTE: This is not necessarily a binary search tree.
+def first_common_ancestor(root: TreeNode, node1: TreeNode, node2: TreeNode) -> TreeNode:
+    node1_is_left = is_descendent(root.left, node1) if root.left else False
+    node2_is_right = is_descendent(root.right, node2) if root.right else False
+    if (node1_is_left and node2_is_right) or (not node1_is_left and not node2_is_right):
+        return root
+    if node1_is_left and not node2_is_right:
+        return first_common_ancestor(root.left, node1, node2)
+    return first_common_ancestor(root.right, node1, node2)
+
+def is_descendent(root: TreeNode, node: TreeNode) -> True:
+    if node == root.left or node == root.right:
+        return True
+    left = is_descendent(root.left, node) if root.left else False
+    right = is_descendent(root.right, node) if root.right else False
+    return right or left
