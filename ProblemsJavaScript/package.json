@@ -1,0 +1,9 @@
+{
+  "name": "problems-java-script",
+  "version": "0.0.0",
+  "description": "ProblemsJavaScript",
+  "main": "leetCodeProblems.js",
+  "author": {
+    "name": ""
+  }
+}

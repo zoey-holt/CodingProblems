@@ -11,6 +11,8 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ProblemsPython", "CodingPro
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "TestsPython", "TestsPython\TestsPython.pyproj", "{8180AA99-E70D-4A99-BD34-AF70B58C7A42}"
 EndProject
+Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "ProblemsJavaScript", "ProblemsJavaScript\ProblemsJavaScript.njsproj", "{F6489984-6D1D-48E5-B860-13538C9C8806}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +31,10 @@ Global
 		{EDA06805-7CC4-4AA6-8A61-0891FD30AA22}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8180AA99-E70D-4A99-BD34-AF70B58C7A42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8180AA99-E70D-4A99-BD34-AF70B58C7A42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6489984-6D1D-48E5-B860-13538C9C8806}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6489984-6D1D-48E5-B860-13538C9C8806}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6489984-6D1D-48E5-B860-13538C9C8806}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6489984-6D1D-48E5-B860-13538C9C8806}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

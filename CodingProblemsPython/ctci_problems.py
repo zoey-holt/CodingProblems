@@ -81,17 +81,22 @@ def build_order(projects: List[str], dependencies: List[List[str]]) -> List[str]
 # Design an algorithm and write code to find the first common ancestor of two nodes in a binary tree. Avoid storing additional nodes in a data structure. 
 # NOTE: This is not necessarily a binary search tree.
 def first_common_ancestor(root: TreeNode, node1: TreeNode, node2: TreeNode) -> TreeNode:
-    node1_is_left = is_descendent(root.left, node1) if root.left else False
-    node2_is_right = is_descendent(root.right, node2) if root.right else False
-    if (node1_is_left and node2_is_right) or (not node1_is_left and not node2_is_right):
+    node1_left = root.left and is_descendent(root.left, node1)
+    node2_right = root.right and is_descendent(root.right, node2)
+    if (node1_left and node2_right) or (not node1_left and not node2_right):
         return root
-    if node1_is_left and not node2_is_right:
-        return first_common_ancestor(root.left, node1, node2)
-    return first_common_ancestor(root.right, node1, node2)
+    next_root = root.left if node1_left else root.right
+    return first_common_ancestor(next_root, node1, node2)
 
 def is_descendent(root: TreeNode, node: TreeNode) -> True:
     if node == root.left or node == root.right:
         return True
-    left = is_descendent(root.left, node) if root.left else False
-    right = is_descendent(root.right, node) if root.right else False
+    left = root.left and is_descendent(root.left, node)
+    right = root.right and is_descendent(root.right, node)
     return right or left
+
+# 4.9 BST Sequences
+# A binary search tree was created by traversing through an array from left to right and inserting each element.
+# Given a binary search tree with distinct elements, print all possible arrays that could have led to this tree.
+def bst_sequences(root: TreeNode) -> List[List[int]]:
+    pass
