@@ -128,6 +128,22 @@ def remove_duplicates(nums: List[int]) -> int:
         k += 1
     return k
 
+# 27. Remove Element
+# Given an integer array nums and an integer val, remove all occurrences of val in nums in-place. The relative order of the elements may be changed.
+# Since it is impossible to change the length of the array in some languages, you must instead have the result be placed in the first part of the array nums. More formally, if there are k elements after removing the duplicates, then the first k elements of nums should hold the final result. It does not matter what you leave beyond the first k elements.
+# Return k after placing the final result in the first k slots of nums.
+# Do not allocate extra space for another array. You must do this by modifying the input array in-place with O(1) extra memory.
+def remove_element(nums: List[int], val: int) -> int:
+    i1 = 0
+    i2 = 0
+    while i1 < len(nums):
+        if nums[i1] == val:
+            i2 += 1
+        else:
+            nums[i1 - i2] = nums[i1]
+        i1 += 1
+    return i1 - i2
+
 # 36. Valid Sudoku
 # Determine if a 9 x 9 Sudoku board is valid. Only the filled cells need to be validated according to the following rules:
 # Each row must contain the digits 1-9 without repetition.

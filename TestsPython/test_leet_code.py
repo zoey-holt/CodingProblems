@@ -40,6 +40,16 @@ def test_remove_duplicates():
     assert problems.remove_duplicates(input) == 5
     assert input[0:5] == [0,1,2,3,4]
 
+def test_remove_element():
+    input = [3,2,2,3]
+    expected = [2,2]
+    assert problems.remove_element(input, 3) == len(expected)
+    assert input[0:len(expected)] == expected
+    input = [0,1,2,2,3,0,4,2]
+    expected = [0,1,3,0,4]
+    assert problems.remove_element(input, 2) == len(expected)
+    assert input[0:len(expected)] == expected
+
 def test_is_valid_sudoku():
     assert problems.is_valid_sudoku([
         ['5','3','.', '.','7','.', '.','.','.'],
@@ -65,6 +75,7 @@ def test_is_valid_sudoku():
         ['.','6','.', '.','.','.', '2','8','.'],
         ['.','.','.', '4','1','9', '.','.','5'],
         ['.','.','.', '.','8','.', '.','7','9']]) == False
+
 def test_inorder_traversal():
     assert problems.inorder_traversal(problems.TreeNode.from_level_order_array([1,None,2,3])) == [1,3,2]
     assert problems.inorder_traversal(problems.TreeNode.from_level_order_array([])) == []
