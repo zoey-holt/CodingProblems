@@ -50,6 +50,15 @@ def test_remove_element():
     assert problems.remove_element(input, 2) == len(expected)
     assert input[0:len(expected)] == expected
 
+def test_str_str():
+    assert problems.str_str('', '') == 0
+    assert problems.str_str('a', '') == 0
+    assert problems.str_str('a', 'a') == 0
+    assert problems.str_str('a', 'b') == -1
+    assert problems.str_str('hello', 'll') == 2
+    assert problems.str_str('aaaaa', 'bba') == -1
+    assert problems.str_str('1234512345', '5') == 4
+
 def test_is_valid_sudoku():
     assert problems.is_valid_sudoku([
         ['5','3','.', '.','7','.', '.','.','.'],

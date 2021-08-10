@@ -144,6 +144,20 @@ def remove_element(nums: List[int], val: int) -> int:
         i1 += 1
     return i1 - i2
 
+# 28. Implement strStr()
+# Return the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack.
+# What should we return when needle is an empty string? This is a great question to ask during an interview.
+# For the purpose of this problem, we will return 0 when needle is an empty string. This is consistent to C's strstr() and Java's indexOf().
+def str_str(haystack: str, needle: str) -> int:
+    if not needle:
+        return 0
+    i = 0
+    while i + len(needle) <= len(haystack):
+        if haystack[i:i+len(needle)] == needle:
+            return i
+        i += 1
+    return -1
+
 # 36. Valid Sudoku
 # Determine if a 9 x 9 Sudoku board is valid. Only the filled cells need to be validated according to the following rules:
 # Each row must contain the digits 1-9 without repetition.
