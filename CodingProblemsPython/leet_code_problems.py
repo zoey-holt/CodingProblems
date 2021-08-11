@@ -176,6 +176,35 @@ def str_str(haystack: str, needle: str) -> int:
     return -1
 
 
+# 29. Divide Two Integers
+# Given two integers dividend and divisor, divide two integers without using multiplication, division, and mod operator.
+# Return the quotient after dividing dividend by divisor. The integer division should truncate toward zero, which means
+# losing its fractional part. For example, truncate(8.345) = 8 and truncate(-2.7335) = -2.
+# Note: Assume we are dealing with an environment that could only store integers within the 32-bit signed integer range:
+# [−2^31, 2^31 − 1]. For this problem, assume that your function returns 2^31 − 1 when the division result overflows.
+def divide(dividend: int, divisor: int) -> int:
+    if dividend == -2147483648 and divisor == -1:
+        return 2147483647  # handle the only possible overflow
+    quotient = 0
+    negative = (dividend < 0 < divisor) or (divisor < 0 < dividend)
+    dividend, divisor = abs(dividend), abs(divisor)
+    temp, count = divisor, 1
+    while dividend >= divisor:
+        if temp < dividend:
+            while temp <= dividend:
+                temp <<= 1
+                count <<= 1
+            temp >>= 1
+            count >>= 1
+        elif temp > dividend:
+            while temp > dividend:
+                temp >>= 1
+                count >>= 1
+        dividend -= temp
+        quotient += count
+    return -quotient if negative else quotient
+
+
 # 36. Valid Sudoku
 # Determine if a 9 x 9 Sudoku board is valid. Only the filled cells need to be validated according to the following
 # rules:
@@ -413,7 +442,8 @@ def min_flips_mono_incr(s: str) -> int:
     trimmed = s.lstrip('0').rstrip('1')
     if not trimmed:
         return 0
-    max_flips = min(len([c for c in trimmed if c == '0']), len([c for c in trimmed if c == '1']))
+    zeroes = len([c for c in trimmed if c == '0'])
+    max_flips = min(zeroes, len(trimmed) - zeroes)
     left_flip = '0' + trimmed[1:]
     right_flip = trimmed[:len(trimmed)-1] + '1'
     left_trimmed = left_flip.lstrip('0')
