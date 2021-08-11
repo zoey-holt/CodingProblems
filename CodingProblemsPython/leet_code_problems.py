@@ -1,10 +1,10 @@
 from typing import List
-import itertools
 import sys
 
+
 # 1. Two Sum
-# Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
-# You may assume that each input would have exactly one solution, and you may not use the same element twice.
+# Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to
+# target. You may assume that each input would have exactly one solution, and you may not use the same element twice.
 # You can return the answer in any order.
 # This solution has a time complexity of O(N) where N = nums.Length.
 # This solution has a space complexity of O(N) where N = nums.Length.
@@ -18,9 +18,11 @@ def two_sum(nums: List[int], target: int) -> List[int]:
             d[n] = i
     return []
 
+
 # 2. Add Two Numbers
-# You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order, and each of their nodes contains a single digit. Add the two numbers and return the sum as a linked list.
-# You may assume the two numbers do not contain any leading zero, except the number 0 itself.
+# You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse
+# order, and each of their nodes contains a single digit. Add the two numbers and return the sum as a linked list. You
+# may assume the two numbers do not contain any leading zero, except the number 0 itself.
 class ListNode:
     def __init__(self, val=0, next=None, values=None):
         if values:
@@ -47,6 +49,7 @@ class ListNode:
             if node is None:
                 return result
 
+
 def add_two_numbers(l1: ListNode, l2: ListNode) -> ListNode:
     head = ListNode()
     a = l1
@@ -68,6 +71,7 @@ def add_two_numbers(l1: ListNode, l2: ListNode) -> ListNode:
             c.next = ListNode()
             c = c.next
     return head
+
 
 # 3. Longest Substring Without Repeating Characters
 # Given a string s, find the length of the longest substring without repeating characters.
@@ -91,11 +95,12 @@ def length_of_longest_substring(s: str) -> int:
             longest = len(s) - i
     return longest
 
+
 # 4. Median of Two Sorted Arrays
 # Given two sorted arrays nums1 and nums2 of size m and n respectively, return the median of the two sorted arrays.
 # The overall run time complexity should be O(log(M + N)).
 def find_median_sorted_arrays(nums1: List[int], nums2: List[int]) -> float:
-    if len(nums2) < len(nums1): # ensure nums2 is always the larger array
+    if len(nums2) < len(nums1):  # ensure nums2 is always the larger array
         throw_away = nums1
         nums1 = nums2
         nums2 = throw_away
@@ -109,16 +114,23 @@ def find_median_sorted_arrays(nums1: List[int], nums2: List[int]) -> float:
         nums2_lmax = -sys.maxsize if part2 == 0 else nums2[part2 - 1]
         nums2_rmin = sys.maxsize if part2 == len(nums2) else nums2[part2]
         if nums1_lmax <= nums2_rmin and nums2_lmax <= nums1_rmin:
-            return (max(nums1_lmax, nums2_lmax) + min(nums1_rmin, nums2_rmin)) / 2 if (len(nums1) + len(nums2)) % 2 == 0 else max(nums1_lmax, nums2_lmax)
-        elif nums1_lmax > nums2_rmin:   hi = part1 - 1
-        else:   lo = part1 + 1
+            return (max(nums1_lmax, nums2_lmax) + min(nums1_rmin, nums2_rmin)) / 2 \
+                if (len(nums1) + len(nums2)) % 2 == 0 else max(nums1_lmax, nums2_lmax)
+        elif nums1_lmax > nums2_rmin:
+            hi = part1 - 1
+        else:
+            lo = part1 + 1
     return 0
 
+
 # 26. Remove Duplicates from Sorted Array
-# Given an integer array nums sorted in non-decreasing order, remove the duplicates in-place such that each unique element appears only once. The relative order of the elements should be kept the same.
-# Since it is impossible to change the length of the array in some languages, you must instead have the result be placed in the first part of the array nums. More formally, if there are k elements after removing the duplicates, then the first k elements of nums should hold the final result. It does not matter what you leave beyond the first k elements.
-# Return k after placing the final result in the first k slots of nums.
-# Do not allocate extra space for another array. You must do this by modifying the input array in-place with O(1) extra memory.
+# Given an integer array nums sorted in non-decreasing order, remove the duplicates in-place such that each unique
+# element appears only once. The relative order of the elements should be kept the same. Since it is impossible to
+# change the length of the array in some languages, you must instead have the result be placed in the first part of the
+# array nums. More formally, if there are k elements after removing the duplicates, then the first k elements of nums
+# should hold the final result. It does not matter what you leave beyond the first k elements. Return k after placing
+# the final result in the first k slots of nums. Do not allocate extra space for another array. You must do this by
+# modifying the input array in-place with O(1) extra memory.
 def remove_duplicates(nums: List[int]) -> int:
     if not nums: return 0
     k = 1
@@ -128,11 +140,14 @@ def remove_duplicates(nums: List[int]) -> int:
         k += 1
     return k
 
+
 # 27. Remove Element
-# Given an integer array nums and an integer val, remove all occurrences of val in nums in-place. The relative order of the elements may be changed.
-# Since it is impossible to change the length of the array in some languages, you must instead have the result be placed in the first part of the array nums. More formally, if there are k elements after removing the duplicates, then the first k elements of nums should hold the final result. It does not matter what you leave beyond the first k elements.
-# Return k after placing the final result in the first k slots of nums.
-# Do not allocate extra space for another array. You must do this by modifying the input array in-place with O(1) extra memory.
+# Given an integer array nums and an integer val, remove all occurrences of val in nums in-place. The relative order of
+# the elements may be changed. Since it is impossible to change the length of the array in some languages, you must
+# instead have the result be placed in the first part of the array nums. More formally, if there are k elements after
+# removing the duplicates, then the first k elements of nums should hold the final result. It does not matter what you
+# leave beyond the first k elements. Return k after placing the final result in the first k slots of nums. Do not
+# allocate extra space for another array. You must do this by modifying the input array in-place with O(1) extra memory.
 def remove_element(nums: List[int], val: int) -> int:
     i1 = 0
     i2 = 0
@@ -144,10 +159,12 @@ def remove_element(nums: List[int], val: int) -> int:
         i1 += 1
     return i1 - i2
 
+
 # 28. Implement strStr()
 # Return the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack.
 # What should we return when needle is an empty string? This is a great question to ask during an interview.
-# For the purpose of this problem, we will return 0 when needle is an empty string. This is consistent to C's strstr() and Java's indexOf().
+# For the purpose of this problem, we will return 0 when needle is an empty string. This is consistent to C's strstr()
+# and Java's indexOf().
 def str_str(haystack: str, needle: str) -> int:
     if not needle:
         return 0
@@ -158,8 +175,10 @@ def str_str(haystack: str, needle: str) -> int:
         i += 1
     return -1
 
+
 # 36. Valid Sudoku
-# Determine if a 9 x 9 Sudoku board is valid. Only the filled cells need to be validated according to the following rules:
+# Determine if a 9 x 9 Sudoku board is valid. Only the filled cells need to be validated according to the following
+# rules:
 # Each row must contain the digits 1-9 without repetition.
 # Each column must contain the digits 1-9 without repetition.
 # Each of the nine 3 x 3 sub-boxes of the grid must contain the digits 1-9 without repetition.
@@ -181,6 +200,7 @@ def is_valid_sudoku(board: List[List[str]]) -> bool:
             return False
     return True
 
+
 def is_valid_sudoku_section(section: List[str]) -> bool:
     checked = []
     for n in section:
@@ -189,6 +209,7 @@ def is_valid_sudoku_section(section: List[str]) -> bool:
                 return False
             checked.append(n)
     return True
+
 
 # 94. Binary Tree Inorder Traversal
 # Given the root of a binary tree, return the inorder traversal of its nodes' values.
@@ -234,6 +255,7 @@ class TreeNode:
             current_level = next_level
         return array
 
+
 def inorder_traversal(root: TreeNode) -> List[int]:
     list = []
     if root:
@@ -241,6 +263,7 @@ def inorder_traversal(root: TreeNode) -> List[int]:
         list.append(root.val)
         list.extend(inorder_traversal(root.right))
     return list
+
 
 # Follow up: Recursive solution is trivial, could you do it iteratively?
 def inorder_traversal_iterative(root: TreeNode) -> List[int]:
@@ -258,13 +281,15 @@ def inorder_traversal_iterative(root: TreeNode) -> List[int]:
             list.append(current.val)
             current = current.right
     return list
-            
+
+
 # 98. Validate Binary Search Tree
 # Given the root of a binary tree, determine if it is a valid binary search tree (BST).
 def is_valid_bst(root: TreeNode) -> bool:
     if not root:
         return True
     return is_valid_bst_subtree(root.left, None, root.val) and is_valid_bst_subtree(root.right, root.val, None)
+
 
 def is_valid_bst_subtree(root: TreeNode, min: int, max: int) -> bool:
     if not root:
@@ -273,8 +298,10 @@ def is_valid_bst_subtree(root: TreeNode, min: int, max: int) -> bool:
         return False
     return is_valid_bst_subtree(root.left, min, root.val) and is_valid_bst_subtree(root.right, root.val, max)
 
+
 # 102. Binary Tree Level Order Traversal
-# Given the root of a binary tree, return the level order traversal of its nodes' values. (i.e., from left to right, level by level).
+# Given the root of a binary tree, return the level order traversal of its nodes' values. (i.e., from left to right,
+# level by level).
 def binary_tree_level_order(root: TreeNode) -> List[List[int]]:
     if not root:
         return []
@@ -289,8 +316,11 @@ def binary_tree_level_order(root: TreeNode) -> List[List[int]]:
         current_level = next_level
     return result
 
+
 # 124. Binary Tree Maximum Path Sum
-# A path in a binary tree is a sequence of nodes where each pair of adjacent nodes in the sequence has an edge connecting them. A node can only appear in the sequence at most once. Note that the path does not need to pass through the root.
+# A path in a binary tree is a sequence of nodes where each pair of adjacent nodes in the sequence has an edge
+# connecting them. A node can only appear in the sequence at most once. Note that the path does not need to pass through
+# the root.
 # The path sum of a path is the sum of the node's values in the path.
 # Given the root of a binary tree, return the maximum path sum of any path.
 # Example 1:
@@ -307,10 +337,16 @@ def binary_tree_level_order(root: TreeNode) -> List[List[int]]:
 def max_path_sum(self, root: TreeNode) -> int:
     pass
 
+
 # 297. Serialize and Deserialize Binary Tree
-# Serialization is the process of converting a data structure or object into a sequence of bits so that it can be stored in a file or memory buffer, or transmitted across a network connection link to be reconstructed later in the same or another computer environment.
-# Design an algorithm to serialize and deserialize a binary tree. There is no restriction on how your serialization/deserialization algorithm should work. You just need to ensure that a binary tree can be serialized to a string and this string can be deserialized to the original tree structure.
-# Clarification: The input/output format is the same as how LeetCode serializes a binary tree. You do not necessarily need to follow this format, so please be creative and come up with different approaches yourself.
+# Serialization is the process of converting a data structure or object into a sequence of bits so that it can be stored
+# in a file or memory buffer, or transmitted across a network connection link to be reconstructed later in the same or
+# another computer environment.
+# Design an algorithm to serialize and deserialize a binary tree. There is no restriction on how your
+# serialization/deserialization algorithm should work. You just need to ensure that a binary tree can be serialized to a
+# string and this string can be deserialized to the original tree structure.
+# Clarification: The input/output format is the same as how LeetCode serializes a binary tree. You do not necessarily
+# need to follow this format, so please be creative and come up with different approaches yourself.
 # Input: root = [1,2,3,None,None,4,5]
 # Output: [1,2,3,None,None,4,5]
 # Input: root = []
@@ -324,8 +360,10 @@ def max_path_sum(self, root: TreeNode) -> int:
 def serialize_binary_tree(root: TreeNode) -> str:
     pass        
 
+
 def deserialize_binary_tree(data: str) -> TreeNode:
     pass
+
 
 # 429. N-ary Tree Level Order Traversal
 # Given an n-ary tree, return the level order traversal of its nodes' values.
@@ -335,7 +373,8 @@ class Node:
         self.children = children or []
         self.seen = False
         
-    # Nary-Tree input serialization is represented in their level order traversal, each group of children is separated by the null value.
+    # Nary-Tree input serialization is represented in their level order traversal, each group of children is separated
+    # by the null value.
     def from_level_order_array(array: List[int]):
         if not array:
             return None
@@ -350,6 +389,7 @@ class Node:
                 branches.pop(0)
         return root
 
+
 def nary_tree_level_order(root: Node) -> List[List[int]]:
     if not root:
         return []
@@ -363,8 +403,31 @@ def nary_tree_level_order(root: Node) -> List[List[int]]:
         current_level = next_level
     return result
 
+
+# 926. Flip String to Monotone Increasing
+# A binary string is monotone increasing if it consists of some number of 0's (possibly none), followed by some number
+# of 1's (also possibly none).
+# You are given a binary string s. You can flip s[i] changing it from 0 to 1 or from 1 to 0.
+# Return the minimum number of flips to make s monotone increasing.
+def min_flips_mono_incr(s: str) -> int:
+    trimmed = s.lstrip('0').rstrip('1')
+    if not trimmed:
+        return 0
+    max_flips = min(len([c for c in trimmed if c == '0']), len([c for c in trimmed if c == '1']))
+    left_flip = '0' + trimmed[1:]
+    right_flip = trimmed[:len(trimmed)-1] + '1'
+    left_trimmed = left_flip.lstrip('0')
+    right_trimmed = right_flip.rstrip('1')
+    if not left_trimmed or not right_trimmed:
+        return 1
+    if len(left_trimmed) <= len(right_trimmed):
+        return min(max_flips, 1 + min_flips_mono_incr(left_trimmed))
+    return min(max_flips, 1 + min_flips_mono_incr(right_trimmed))
+
+
 # 1004. Max Consecutive Ones III
-# Given a binary array nums and an integer k, return the maximum number of consecutive 1's in the array if you can flip at most k 0's.
+# Given a binary array nums and an integer k, return the maximum number of consecutive 1's in the array if you can flip
+# at most k 0's.
 # TODO: This is still not quite a correct answer.
 def longest_ones(nums: List[int], k: int) -> int:
     longest = 0
@@ -375,6 +438,7 @@ def longest_ones(nums: List[int], k: int) -> int:
         lens.append(a)
         longest = max(longest, a)
     return longest
+
 
 def get_one_group_indicies(nums: List[int]) -> List[int]:
     group_indicies = []
@@ -393,6 +457,7 @@ def get_one_group_indicies(nums: List[int]) -> List[int]:
         one_group.append(len(nums))
         group_indicies.append(one_group)
     return group_indicies
+
 
 def longest_one_sliding_window(grp_idxs: List[int], curr_grp: List[int], i: int, k: int, max_len: int) -> int:
     len_curr = curr_grp[1] - curr_grp[0]
