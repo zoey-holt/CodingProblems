@@ -96,6 +96,11 @@ class Test(TestCase):
             ['.','.','.', '4','1','9', '.','.','5'],
             ['.','.','.', '.','8','.', '.','7','9']]) is False
 
+    def test_permute(self):
+        assert problems.permute([1,2,3]) == [[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,2,1],[3,1,2],]
+        assert problems.permute([0,1]) == [[0,1],[1,0]]
+        assert problems.permute([1]) == [[1]]
+
     def test_inorder_traversal(self):
         assert problems.inorder_traversal(problems.TreeNode.from_level_order_array([1,None,2,3])) == [1,3,2]
         assert problems.inorder_traversal(problems.TreeNode.from_level_order_array([])) == []

@@ -186,7 +186,7 @@ def divide(dividend: int, divisor: int) -> int:
     if dividend == -2147483648 and divisor == -1:
         return 2147483647  # handle the only possible overflow
     quotient = 0
-    negative = (dividend < 0 < divisor) or (divisor < 0 < dividend)
+    negative = dividend < 0 < divisor or divisor < 0 < dividend
     dividend, divisor = abs(dividend), abs(divisor)
     temp, count = divisor, 1
     while dividend >= divisor:
@@ -238,6 +238,24 @@ def is_valid_sudoku_section(section: List[str]) -> bool:
                 return False
             checked.append(n)
     return True
+
+
+# 46. Permutations
+# Given an array nums of distinct integers return all the possible permutations. You can return the answer in any order.
+def permute(nums: List[int]) -> List[List[int]]:
+    result = []
+
+    def permute_inner(numbers: List[int], start: int = 0) -> None:
+        if start == len(nums) - 1:
+            result.append(numbers)
+        else:
+            for i in range(start, len(nums)):
+                swapped = [n for n in numbers]
+                swapped[start], swapped[i] = numbers[i], numbers[start]
+                permute_inner(swapped, start + 1)
+
+    permute_inner(nums)
+    return result
 
 
 # 94. Binary Tree Inorder Traversal
